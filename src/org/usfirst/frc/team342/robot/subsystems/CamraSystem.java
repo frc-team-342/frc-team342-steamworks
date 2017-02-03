@@ -1,6 +1,6 @@
 package org.usfirst.frc.team342.robot.subsystems;
 
-import org.usfirst.frc.team342.swerve_prototype.RobotMap;
+import org.usfirst.frc.team342.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;

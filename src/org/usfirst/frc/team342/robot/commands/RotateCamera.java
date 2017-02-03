@@ -1,7 +1,7 @@
 package org.usfirst.frc.team342.robot.commands;
 
-import org.usfirst.frc.team342.swerve_prototype.OI;
-import org.usfirst.frc.team342.swerve_prototype.subsystems.CamraSystem;
+import org.usfirst.frc.team342.robot.OI;
+import org.usfirst.frc.team342.robot.subsystems.CamraSystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
@@ -15,8 +15,8 @@ public class RotateCamera extends Command {
 	
 	public RotateCamera(){
 		CamControl = CamraSystem.getInstance();
-		oi = OI.getInstance();
-		Joy = oi.stick;
+		//oi = OI.getInstance();
+		//Joy = oi.stick;
 	}
 	
 	@Override

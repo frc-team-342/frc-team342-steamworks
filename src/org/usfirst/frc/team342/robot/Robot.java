@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team342.robot.commands.DebugLights;
 import org.usfirst.frc.team342.robot.commands.ExampleCommand;
 import org.usfirst.frc.team342.robot.subsystems.ExampleSubsystem;
 
@@ -24,6 +25,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	Command autonomousCommand;
+	Command DebugCommand;
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -90,6 +93,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		DebugCommand = new DebugLights();
+		DebugCommand.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
