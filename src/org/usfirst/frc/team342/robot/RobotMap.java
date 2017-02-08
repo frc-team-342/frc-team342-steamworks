@@ -31,6 +31,9 @@ public class RobotMap {
 	public static final int LightsBlue=1;
 	public static final int LightsGreen=2;
 	public static final int LightsRed=3;
+	public static final int LightsCamera1=4;
+	public static final int LightsCamera2=5;
+	public static final int LightsSpot=6;
 	
 	//camera subsystem
 	public static final int Servo1=4;
