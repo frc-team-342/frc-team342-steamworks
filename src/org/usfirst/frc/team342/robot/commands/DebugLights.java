@@ -1,5 +1,6 @@
 package org.usfirst.frc.team342.robot.commands;
 
+import org.usfirst.frc.team342.robot.OI;
 import org.usfirst.frc.team342.robot.RobotMap;
 import org.usfirst.frc.team342.robot.subsystems.LightsSubsystem;
 
@@ -11,7 +12,7 @@ private LightsSubsystem Lights;
 private Joystick joystick;
 public DebugLights(){
 	Lights= LightsSubsystem.Getinstance();
-	joystick= new Joystick (RobotMap.JOYSTICK);
+	joystick= OI.joystick;
 }
 protected void execute (){
 	double red = joystick.getRawAxis(0);
@@ -21,7 +22,7 @@ protected void execute (){
 	green = Math.abs(green);
 	blue = Math.abs(blue);
 	//Lights.setall(red, green, blue);
-	Lights.setall(1.0, 0.0, 0.0);
+	Lights.setrgb(1.0, 0.0, 0.0);
 }
 	@Override
 	protected boolean isFinished() {
