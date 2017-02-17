@@ -28,9 +28,9 @@ public class RobotMap {
 	public static final int ClimberMotor=0;
 	
 	//lights subsystem
-	public static final int LightsBlue=1;
-	public static final int LightsGreen=2;
-	public static final int LightsRed=3;
+	public static final int LightsBlue=9;
+	public static final int LightsGreen=7;
+	public static final int LightsRed=8;
 	public static final int LightsCamera1=4;
 	public static final int LightsCamera2=5;
 	public static final int LightsSpot=6;
@@ -38,4 +38,16 @@ public class RobotMap {
 	//camera subsystem
 	public static final int Servo1=4;
 	public static final int Servo2=5;
+	
+	//PWMs
+	public static final int INTAKEMOTOR=0;
+	public static final int CONVEYERMOTOR=1;
+	public static final int CLIMBMOTOR=2;
+	public static final int GEARDOOR=3;
+	public static final int RINGLIGHT1=4;
+	public static final int RINGLIGHT2=5;
+	public static final int TARGETINGLIGHT=6;
+	public static final int GREENLED=7;
+	public static final int REDLED=8;
+	public static final int BLUELED=9;
 }
