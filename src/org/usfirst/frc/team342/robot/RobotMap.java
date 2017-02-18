@@ -18,49 +18,47 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	//controls
-	public static final int JOYSTICK=0;
+	public static final int XBOXPORT = 0;
+	public static final int MANIPULATORPORT = 1;
 	
 	//shooter subsystem
 
-	public static final int FSHOOTERMOTOR=9;
-	public static final int RSHOOTERMOTOR=10;
-	
-	//climb subsystem
-	public static final int ClimberMotor=0;
-	
+	public static final int FSHOOTERMOTOR = 9;
+	public static final int RSHOOTERMOTOR = 10;
+	 
 	//lights subsystem
-	public static final int LightsBlue=9;
-	public static final int LightsGreen=7;
-	public static final int LightsRed=8;
-	public static final int LightsCamera1=4;
-	public static final int LightsCamera2=5;
-	public static final int LightsSpot=6;
+	public static final int LightsBlue = 9;
+	public static final int LightsGreen = 7;
+	public static final int LightsRed = 8;
+	public static final int LightsCamera1 = 4;
+	public static final int LightsCamera2 = 5;
+	public static final int LightsSpot = 6;
 	
 	//camera subsystem
-	public static final int Servo1=4;
-	public static final int Servo2=5;
+	public static final int Servo1 = 4;
+	public static final int Servo2 = 5;
 	
 	//PWMs
-	public static final int INTAKEMOTOR=0;
-	public static final int CONVEYERMOTOR=1;
-	public static final int CLIMBMOTOR=2;
-	public static final int GEARDOOR=3;
-	public static final int RINGLIGHT1=4;
-	public static final int RINGLIGHT2=5;
-	public static final int TARGETINGLIGHT=6;
-	public static final int GREENLED=7;
-	public static final int REDLED=8;
-	public static final int BLUELED=9;
+	public static final int INTAKEMOTOR = 0;
+	public static final int CONVEYERMOTOR = 1;
+	public static final int CLIMBMOTOR = 2;
+	public static final int GEARDOOR = 3;
+	public static final int RINGLIGHT1 = 4;
+	public static final int RINGLIGHT2 = 5;
+	public static final int TARGETINGLIGHT = 6;
+	public static final int GREENLED = 7;
+	public static final int REDLED = 8;
+	public static final int BLUELED = 9;
 	
 	//talons
-	public static final int RFDRIVEMOTOR=1;
-	public static final int RRDRIVEMOTOR=2;
-	public static final int LRDRIVEMOTOR=3;
-	public static final int LFDRIVEMOTOR=4;
-	public static final int RFSTEERMOTOR=5;
-	public static final int RRSTEERMOTOR=6;
-	public static final int LRSTEERMOTOR=7;
-	public static final int LFSTEERMOTOR=8;
+	public static final int RFDRIVEMOTOR = 1;
+	public static final int RRDRIVEMOTOR = 2;
+	public static final int LRDRIVEMOTOR = 3;
+	public static final int LFDRIVEMOTOR = 4;
+	public static final int RFSTEERMOTOR = 5;
+	public static final int RRSTEERMOTOR = 6;
+	public static final int LRSTEERMOTOR = 7;
+	public static final int LFSTEERMOTOR = 8;
 	
 	
 }
