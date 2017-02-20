@@ -21,8 +21,9 @@ public class RobotMap {
 	public static final int JOYSTICK=0;
 	
 	//shooter subsystem
-	public static final int FShooterMotor=9;
-	public static final int RShooterMotor=10;
+
+	public static final int FSHOOTERMOTOR=9;
+	public static final int RSHOOTERMOTOR=10;
 	
 	//climb subsystem
 	public static final int ClimberMotor=0;
@@ -50,4 +51,17 @@ public class RobotMap {
 	public static final int GREENLED=7;
 	public static final int REDLED=8;
 	public static final int BLUELED=9;
+	
+	//talons
+	public static final int RFDRIVEMOTOR=1;
+	public static final int RRDRIVEMOTOR=2;
+	public static final int LRDRIVEMOTOR=3;
+	public static final int LFDRIVEMOTOR=4;
+	public static final int RFSTEERMOTOR=5;
+	public static final int RRSTEERMOTOR=6;
+	public static final int LRSTEERMOTOR=7;
+	public static final int LFSTEERMOTOR=8;
+	
+	
 }
+
