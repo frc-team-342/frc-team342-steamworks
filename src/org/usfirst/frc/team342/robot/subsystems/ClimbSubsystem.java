@@ -10,6 +10,7 @@ public class ClimbSubsystem extends Subsystem {
 
 	Talon climbMotor;
 	PowerDistributionPanel pdp;
+	double current = 40;
 	
 	private static final ClimbSubsystem INSTANCE = new ClimbSubsystem();
 	
@@ -29,7 +30,11 @@ public class ClimbSubsystem extends Subsystem {
 	}
 	
 	public void Climb(double speed){
-		climbMotor.set(speed);
+		if (getCurrent()< current){
+			climbMotor.set(speed);
+			
+		}
+		
 	}
 	
 	public double getCurrent(){
