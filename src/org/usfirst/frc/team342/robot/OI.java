@@ -2,6 +2,9 @@ package org.usfirst.frc.team342.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team342.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -9,13 +12,17 @@ import edu.wpi.first.wpilibj.buttons.Button;
  */
 public class OI {
 	
-	// LeftBumper = climb
+	// \/ Make all of the buttons where it's only function is to reverse, to if you press it twice, \/
+	// \/ The button will automatically reverse it.													\/
+
 	// A_Button = collector start
-	// Right_Trigger = start shooter, then later on conveyer/elevator
+	// B_Button = stop all Shooter actions
 	// X_Button = Lower gear door
 	// Y_Button = Raise gear door
-	
-	
+	// Right_Trigger = start shooter, then later on conveyer/elevator
+	// Right_Bumper = reverse collector 
+	// Left_Bumper = Climb
+	// Left_Stick = DebugInfo
 	
 	private static final int A_BUTTON = 1;
 	private static final int B_BUTTON = 2;
@@ -53,10 +60,72 @@ public class OI {
 	public static Joystick Xbox_Controller;
 	public static Joystick Manipulator_Controller;
 	
+	private Command CollectorIn;
+	private Command CollectorOut;
+	private Command SpinUpShooter;
+	private Command StopShooter;
+	private Command GearDoorDown;
+	private Command GearDoorUp;
+	private Command LiftStart;
+	private Command ReverseLift;
+	private Command DebugInfo;
+	
 	public OI (){
+		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
 		Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
 		
+		//Instantiating all the buttons on each respectable Joystick.
+		//XBOX (Main Controller)
+		Xbox_A_Button = new JoystickButton(Xbox_Controller, A_BUTTON);
+		Xbox_B_Button = new JoystickButton(Xbox_Controller, B_BUTTON);
+		Xbox_X_Button = new JoystickButton(Xbox_Controller, X_BUTTON);
+		Xbox_Y_Button = new JoystickButton(Xbox_Controller, Y_BUTTON);
+		Xbox_Left_Bumper = new JoystickButton(Xbox_Controller, LEFT_BUMPER);
+		Xbox_Right_Bumper = new JoystickButton(Xbox_Controller, RIGHT_BUMPER);
+		Xbox_Back = new JoystickButton(Xbox_Controller, BACK);
+		Xbox_Start = new JoystickButton(Xbox_Controller, START);
+		Xbox_Left_Stick_Button = new JoystickButton(Xbox_Controller, LEFT_STICK_BUTTON);
+		Xbox_Right_Stick_Button = new JoystickButton(Xbox_Controller, RIGHT_STICK_BUTTON);
+		
+		//Manipulator Controller (Secondary Controller)
+		A_Button = new JoystickButton(Manipulator_Controller, A_BUTTON);
+		B_Button = new JoystickButton(Manipulator_Controller, B_BUTTON);
+		X_Button = new JoystickButton(Manipulator_Controller, X_BUTTON);
+		Y_Button = new JoystickButton(Manipulator_Controller, Y_BUTTON);
+		Left_Bumper = new JoystickButton(Manipulator_Controller, LEFT_BUMPER);
+		Right_Bumper = new JoystickButton(Manipulator_Controller, RIGHT_BUMPER);
+		Back = new JoystickButton(Manipulator_Controller, BACK);
+		Start = new JoystickButton(Manipulator_Controller, START);
+		Left_Stick_Button = new JoystickButton(Manipulator_Controller, LEFT_STICK_BUTTON);
+		Right_Stick_Button = new JoystickButton(Manipulator_Controller, RIGHT_STICK_BUTTON);
+		
+		//Instantiating all the Commands used with buttons.
+		CollectorIn = new CollectorIn();
+		CollectorOut = new CollectorOut();
+		SpinUpShooter = new SpinUpShooter();
+		StopShooter = new StopShooter();
+		GearDoorDown = new GearDoorDown();
+		GearDoorUp = new GearDoorUp();
+		LiftStart = new LiftStart();
+		DebugInfo = new DebugInfo();
+		
+		//Setting the buttons to their individual commands
+		A_Button.whileHeld(CollectorIn);
+		B_Button.whenPressed(StopShooter);
+		X_Button.whenPressed(GearDoorDown);
+		Y_Button.whenPressed(GearDoorUp);
+		Left_Bumper.whenPressed(LiftStart);
+		Right_Bumper.whileHeld(CollectorOut);
+		Left_Stick_Button.whileHeld(DebugInfo);
+		
+		Xbox_A_Button.whileHeld(CollectorIn);
+		Xbox_B_Button.whenPressed(StopShooter);
+		Xbox_X_Button.whenPressed(GearDoorDown);
+		Xbox_Y_Button.whenPressed(GearDoorUp);
+		Xbox_Left_Bumper.whenPressed(LiftStart);
+		Xbox_Right_Bumper.whileHeld(CollectorOut);
+		Xbox_Left_Stick_Button.whileHeld(DebugInfo);
 		
 	}
 	

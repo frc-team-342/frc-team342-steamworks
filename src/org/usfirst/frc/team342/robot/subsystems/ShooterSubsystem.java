@@ -24,12 +24,9 @@ public class ShooterSubsystem extends Subsystem{
 		ConveyerMotor = new Talon(RobotMap.CONVEYERMOTOR);
 	}
 	
-	
-	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public void ReverseIntake(){
@@ -69,6 +66,9 @@ public class ShooterSubsystem extends Subsystem{
 		RShooterMotor.set(0.0);
 	}
 	
+	public void StopIntake(){
+		IntakeMotor.set(0.0);
+	}
 	public static ShooterSubsystem Getinstance (){
 		return instance;
 	}
