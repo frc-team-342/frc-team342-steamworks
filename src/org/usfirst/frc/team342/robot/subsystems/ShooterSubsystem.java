@@ -22,11 +22,17 @@ public class ShooterSubsystem extends Subsystem{
 		RShooterMotor = new CANTalon(RobotMap.RSHOOTERMOTOR);
 		IntakeMotor = new Talon(RobotMap.INTAKEMOTOR);
 		ConveyerMotor = new Talon(RobotMap.CONVEYERMOTOR);
+		
+		setUpShooterMotors();
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
+	}
+	
+	private void setUpShooterMotors(){
+		
 	}
 	
 	public void ReverseIntake(){
@@ -41,9 +47,9 @@ public class ShooterSubsystem extends Subsystem{
 		ConveyerMotor.set(0.5);
 	}
 	
-	public void SpinUpShooters(){
-		FShooterMotor.set(0.0);
-		RShooterMotor.set(0.0);
+	public void SpinUpShooters(double speed){
+		FShooterMotor.set(speed);
+		RShooterMotor.set(speed);
 	}
 	
 	public boolean ShootersSpeedMet(){

@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClimbSubsystem extends Subsystem {
 
-	Talon climbMotor;
-	PowerDistributionPanel pdp;
+	private Talon climbMotor;
+	private PowerDistributionPanel pdp;
 	
 	private static final ClimbSubsystem INSTANCE = new ClimbSubsystem();
 	
@@ -27,6 +27,8 @@ public class ClimbSubsystem extends Subsystem {
 	public void Stop(){
 		climbMotor.set(0.0);
 	}
+	
+	
 	
 	public void Climb(double speed){
 		climbMotor.set(speed);

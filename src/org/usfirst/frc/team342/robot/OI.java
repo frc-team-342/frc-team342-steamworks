@@ -115,7 +115,7 @@ public class OI {
 		B_Button.whenPressed(StopShooter);
 		X_Button.whenPressed(GearDoorDown);
 		Y_Button.whenPressed(GearDoorUp);
-		Left_Bumper.whenPressed(LiftStart);
+		Left_Bumper.whileHeld(LiftStart);
 		Right_Bumper.whileHeld(CollectorOut);
 		Left_Stick_Button.whileHeld(DebugInfo);
 		

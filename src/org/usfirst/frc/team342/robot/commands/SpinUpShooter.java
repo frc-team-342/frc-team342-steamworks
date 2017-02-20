@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SpinUpShooter extends Command {
 
 	private ShooterSubsystem shooterSystem;
+	
+	private double triggerAxis;
+	
 	private boolean shooterAtSpeed;
 	
 	public SpinUpShooter(){
