@@ -25,17 +25,15 @@ public class LiftStart extends Command {
 	protected void execute() {
 		climb.Climb(speed);
 		
-		if(climb.getCurrent() > 35.0){
-			finished = true;
-		}else{
-			finished = false;
-		}
-		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		if(finished){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
