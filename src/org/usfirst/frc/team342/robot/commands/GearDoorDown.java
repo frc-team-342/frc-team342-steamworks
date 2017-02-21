@@ -9,7 +9,7 @@ public class GearDoorDown extends Command {
 	private GearSubsystem gearSystem;
 	
 	public GearDoorDown(){
-		gearSystem = GearSubsystem.Getinstance();
+		gearSystem = GearSubsystem.getInstance();
 	}
 	
 	@Override
@@ -18,7 +18,7 @@ public class GearDoorDown extends Command {
 
 	@Override
 	protected void execute() {
-		gearSystem.forward();
+		gearSystem.backward();
 	}
 	
 	@Override

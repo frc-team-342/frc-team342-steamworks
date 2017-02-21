@@ -9,7 +9,7 @@ public class GearDoorUp extends Command {
 	private GearSubsystem gearSystem;
 	
 	public GearDoorUp(){
-		gearSystem = GearSubsystem.Getinstance();
+		gearSystem = GearSubsystem.getInstance();
 	}
 	
 	@Override

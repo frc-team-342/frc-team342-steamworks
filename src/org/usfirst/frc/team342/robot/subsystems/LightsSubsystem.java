@@ -14,7 +14,8 @@ public class LightsSubsystem extends Subsystem {
 	private Servo Camera2;
 	private Servo Spot;
 	
-	private static final LightsSubsystem instance= new LightsSubsystem ();
+	private static final LightsSubsystem INSTANCE = new LightsSubsystem();
+	
 	private LightsSubsystem (){
 		red= new Servo (RobotMap.LightsRed);
 		green= new Servo (RobotMap.LightsGreen);
@@ -24,9 +25,11 @@ public class LightsSubsystem extends Subsystem {
 		Spot= new Servo (RobotMap.LightsSpot);
 	
 	}
-	public static LightsSubsystem Getinstance (){
-		return instance;
+
+	public static LightsSubsystem getInstance (){
+		return INSTANCE;
 	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
@@ -38,7 +41,7 @@ public void setrgb (double redn, double greenn, double bluen){
 	green.setRaw((int)(greenn*255));
 	blue.setRaw((int)(bluen*255));
 	
-	SmartDashboard.putDouble("red", redn);
+	//SmartDashboard.putDouble("red", redn);
 }
 public void setred (double redn){
 	red.set(redn);
