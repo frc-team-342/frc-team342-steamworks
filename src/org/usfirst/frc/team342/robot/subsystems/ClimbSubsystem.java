@@ -10,10 +10,7 @@ public class ClimbSubsystem extends Subsystem {
 
 	private Talon climbMotor;
 	private PowerDistributionPanel pdp;
-	
-	public boolean direction;
-	
-	public int speed;
+	private boolean direction;
 	
 	private static final ClimbSubsystem INSTANCE = new ClimbSubsystem();
 	

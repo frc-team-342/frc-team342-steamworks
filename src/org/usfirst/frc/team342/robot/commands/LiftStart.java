@@ -3,7 +3,6 @@ package org.usfirst.frc.team342.robot.commands;
 import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftStart extends Command {
 	
@@ -24,8 +23,6 @@ public class LiftStart extends Command {
 	@Override
 	protected void execute() {
 		climb.Climb(speed);
-		SmartDashboard.putBoolean("Direction: ", climb.direction);
-		SmartDashboard.putNumber("counter: ", climb.speed);
 	}
 
 	@Override

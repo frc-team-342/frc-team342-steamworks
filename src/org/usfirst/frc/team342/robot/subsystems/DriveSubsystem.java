@@ -126,6 +126,11 @@ public class DriveSubsystem extends Subsystem {
 		FLX = Math.cos(FLoffset + ((Math.PI / 2) * rotation));
 		FLY = Math.sin(FLoffset + ((Math.PI / 2) * rotation));
 		
+		//FRang = calcAngle(FRX + tempX, -1.0 * (FRY + tempY)) / 360.0;
+		//BRang = calcAngle(BRX + tempX, -1.0 * (BRY + tempY)) / 360.0;
+		//BLang = calcAngle(BLX + tempX, -1.0 * (BLY + tempY)) / 360.0;
+		//FLang = calcAngle(FLX + tempX, -1.0 * (FLY + tempY)) / 360.0;
+
 		FRang = calcAngle(FRX + tempX, -1.0 * (FRY + tempY)) / 360.0;
 		BRang = calcAngle(BRX + tempX, -1.0 * (BRY + tempY)) / 360.0;
 		BLang = calcAngle(BLX + tempX, -1.0 * (BLY + tempY)) / 360.0;
