@@ -60,7 +60,7 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(0.3);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		FRTurn.setEncPosition((FRTurn.getPulseWidthPosition() % 4096) + (23707 % 4096));
+		FRTurn.setEncPosition((FRTurn.getPulseWidthPosition() % 4096));
 		FRTurn.enable();
 		
 		RRTurn.disable();
@@ -69,7 +69,7 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.setP(0.3);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		RRTurn.setEncPosition((RRTurn.getPulseWidthPosition() % 4096) + (497 % 4096));
+		RRTurn.setEncPosition((RRTurn.getPulseWidthPosition() % 4096));
 		RRTurn.enable();
 		
 		RLTurn.disable();
@@ -78,7 +78,7 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.setP(0.3);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		RLTurn.setEncPosition((RLTurn.getPulseWidthPosition() % 4096) + (40672 % 4096));
+		RLTurn.setEncPosition((RLTurn.getPulseWidthPosition() % 4096));
 		RLTurn.enable();
 		
 		FLTurn.disable();
@@ -87,7 +87,7 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(0.3);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		FLTurn.setEncPosition((FLTurn.getPulseWidthPosition() % 4096) + (16473 % 4096));
+		FLTurn.setEncPosition((FLTurn.getPulseWidthPosition() % 4096));
 		FLTurn.enable();
 		
 	}
@@ -111,20 +111,20 @@ public class DriveSubsystem extends Subsystem {
 		double GyRo = NavX.getAngle();
 
 		// setting individual wheels angle
-		tempX = Math.sin(angle * (2 * Math.PI)) * speed;
-		tempY = Math.cos(angle * (2 * Math.PI)) * speed;
+		tempX = Math.cos(angle * (2 * Math.PI)) * speed;
+		tempY = Math.sin(angle * (2 * Math.PI)) * speed;
 		
-		FRX = Math.sin(FRoffset + ((Math.PI / 2) * rotation));
-		FRY = Math.cos(FRoffset + ((Math.PI / 2) * rotation));
+		FRX = Math.cos(FRoffset + ((Math.PI / 2) * rotation));
+		FRY = Math.sin(FRoffset + ((Math.PI / 2) * rotation));
 		
-		BRX = Math.sin(BRoffset + ((Math.PI / 2) * rotation));
-		BRY = Math.cos(BRoffset + ((Math.PI / 2) * rotation));
+		BRX = Math.cos(BRoffset + ((Math.PI / 2) * rotation));
+		BRY = Math.sin(BRoffset + ((Math.PI / 2) * rotation));
 		
-		BLX = Math.sin(BLoffset + ((Math.PI / 2) * rotation));
-		BLY = Math.cos(BLoffset + ((Math.PI / 2) * rotation));
+		BLX = Math.cos(BLoffset + ((Math.PI / 2) * rotation));
+		BLY = Math.sin(BLoffset + ((Math.PI / 2) * rotation));
 		
-		FLX = Math.sin(FLoffset + ((Math.PI / 2) * rotation));
-		FLY = Math.cos(FLoffset + ((Math.PI / 2) * rotation));
+		FLX = Math.cos(FLoffset + ((Math.PI / 2) * rotation));
+		FLY = Math.sin(FLoffset + ((Math.PI / 2) * rotation));
 		
 		FRang = calcAngle(FRX + tempX, -1.0 * (FRY + tempY)) / 360.0;
 		BRang = calcAngle(BRX + tempX, -1.0 * (BRY + tempY)) / 360.0;
@@ -136,15 +136,25 @@ public class DriveSubsystem extends Subsystem {
 		BLpow = Math.sqrt(Math.pow(BLX + tempX, 2) + Math.pow(BLY + tempY, 2));
 		FLpow = Math.sqrt(Math.pow(FLX + tempX, 2) + Math.pow(FLY + tempY, 2));
 		
-		setAngle(FRang, FRTurn);
-		setAngle(BRang, RRTurn);
-		setAngle(BLang, RLTurn);
-		setAngle(FLang, FLTurn);
+		//setAngle(FRang, FRTurn);
+		//setAngle(BRang, RRTurn);
+		//setAngle(BLang, RLTurn);
+		//setAngle(FLang, FLTurn);
 		
-		FRDrive.set(FRpow);
-		RRDrive.set(BRpow);
-		RLDrive.set(BLpow);
-		FLDrive.set(FLpow);
+		SmartDashboard.putNumber("FRang: ", FRang);
+		SmartDashboard.putNumber("BRang: ", BRang);
+		SmartDashboard.putNumber("BLang: ", BLang);
+		SmartDashboard.putNumber("FLang: ", FLang);
+		
+		//FRDrive.set(FRpow);
+		//RRDrive.set(BRpow);
+		//RLDrive.set(BLpow);
+		//FLDrive.set(FLpow);
+		
+		SmartDashboard.putNumber("FRPOW: ", FRpow);
+		SmartDashboard.putNumber("BRPOW: ", BRpow);
+		SmartDashboard.putNumber("BLPOW: ", BLpow);
+		SmartDashboard.putNumber("FLPOW: ", FLpow);
 	}
 	
 	public void setAngle(double angle, CANTalon talon){

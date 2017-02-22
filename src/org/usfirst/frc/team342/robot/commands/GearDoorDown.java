@@ -3,6 +3,7 @@ package org.usfirst.frc.team342.robot.commands;
 import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GearDoorDown extends Command {
 
@@ -19,6 +20,7 @@ public class GearDoorDown extends Command {
 	@Override
 	protected void execute() {
 		gearSystem.backward();
+		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	
 	@Override

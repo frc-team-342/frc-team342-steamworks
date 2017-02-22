@@ -111,7 +111,7 @@ public class OI {
 		GearDoorDown = new GearDoorDown();
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
-		DebugInfo = new DebugInfo();
+		//DebugInfo = new DebugInfo();
 		
 		//Setting the buttons to their individual commands
 		/*A_Button.whileHeld(CollectorIn);
@@ -129,7 +129,7 @@ public class OI {
 		Xbox_Y_Button.whileHeld(GearDoorUp);
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
-		Xbox_Left_Stick_Button.whileHeld(DebugInfo);
+		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
 		
 	}
 	

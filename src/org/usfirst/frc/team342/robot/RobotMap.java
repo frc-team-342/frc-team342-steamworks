@@ -55,7 +55,6 @@ public class RobotMap {
 	public static final int RRDRIVEMOTOR = 2;
 	public static final int LRDRIVEMOTOR = 3;
 	public static final int LFDRIVEMOTOR = 4;
-	
 	public static final int RFSTEERMOTOR = 5;
 	public static final int RRSTEERMOTOR = 6;
 	public static final int LRSTEERMOTOR = 7;
