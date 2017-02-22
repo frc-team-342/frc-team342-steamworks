@@ -10,43 +10,52 @@ public class GearSubsystem extends Subsystem {
 	private Spark DoorMotor;
 	private PowerDistributionPanel PDP; 
 	private double CurrentLimit = 40;
+	private DigitalInput hallEffect;
+	//^ For the hall effect, false means contact is detected ^
+	
+	public GearSubsystem (){
+		DoorMotor = new Spark (3);
+		hallEffect = new DigitalInput(9);
+		PDP = new PowerDistributionPanel(16);
+	}
+	
+	@Override
+	protected void initDefaultCommand() {
+		
+	}
+	
 	public void forward (){
-		//DoorMotor.setDirection(Direction.kForward);
-		if(GearCurrent() < CurrentLimit){
-			DoorMotor.set(1);
+		if(getHallEffect()){
+			DoorMotor.set(1.0);
+		}else{
+			DoorMotor.set(0.0);
 		}
 	}
 	
 	public void backward (){
-		//DoorMotor.setDirection(Direction.kReverse)
-		if(GearCurrent() < CurrentLimit){
-		DoorMotor.set(-1);	
+		if(getHallEffect()){
+			DoorMotor.set(-1.0);
+		}else{
+			DoorMotor.set(0.0);
 		}
 	}
 	
 	public void stop (){
-		//DoorMotor.stopMotor();
 		DoorMotor.set(0);
 	}
-	
-	public GearSubsystem (){
-		DoorMotor = new Spark (3);
-	
-	}
 
-	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
-	}
-	public static GearSubsystem Getinstance (){
-		return instance;
-		
-	}
-	public double GearCurrent(){
+	public double getCurrent(){
 		return PDP.getCurrent(6);
 		
 	}
-
+	
+	public boolean getHallEffect(){
+		return hallEffect.get();
+	}
+	
+	public static GearSubsystem getInstance (){
+		return instance;
+		
+	}
 }
 

@@ -9,7 +9,7 @@ public class StopShooter extends Command {
 	private ShooterSubsystem shooterSystem;
 	
 	public StopShooter(){
-		shooterSystem = shooterSystem.Getinstance();
+		shooterSystem = shooterSystem.getInstance();
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ public class CollectorOut extends Command {
 private ShooterSubsystem shooterSystem;
 	
 	public CollectorOut(){
-		shooterSystem = ShooterSubsystem.Getinstance();
+		shooterSystem = ShooterSubsystem.getInstance();
 	}
 	
 	@Override
