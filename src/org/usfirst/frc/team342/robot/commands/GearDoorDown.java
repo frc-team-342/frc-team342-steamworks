@@ -20,7 +20,6 @@ public class GearDoorDown extends Command {
 	@Override
 	protected void execute() {
 		gearSystem.backward();
-		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	
 	@Override

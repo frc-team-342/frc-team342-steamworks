@@ -36,11 +36,11 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	
 	public void ReverseIntake(){
-		IntakeMotor.set(0.5);
+		IntakeMotor.set(0.8);
 	}
 	
 	public void IntakeOn(){
-		IntakeMotor.set(-0.5);
+		IntakeMotor.set(-0.8);
 	}
 	
 	public void ConveyerOn(){

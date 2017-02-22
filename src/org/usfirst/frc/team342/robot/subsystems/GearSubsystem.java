@@ -1,5 +1,7 @@
 package org.usfirst.frc.team342.robot.subsystems;
 
+import org.usfirst.frc.team342.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Spark;
@@ -15,9 +17,9 @@ public class GearSubsystem extends Subsystem {
 	//^ For the hall effect, false means contact is detected ^
 	
 	public GearSubsystem (){
-		DoorMotor = new Spark (3);
-		hallEffect = new DigitalInput(9);
-		PDP = new PowerDistributionPanel(16);
+		DoorMotor = new Spark (RobotMap.GEARDOOR);
+		hallEffect = new DigitalInput(RobotMap.HALLEFFECT);
+		PDP = new PowerDistributionPanel(RobotMap.PDPADDR);
 	}
 	
 	@Override
@@ -34,11 +36,7 @@ public class GearSubsystem extends Subsystem {
 	}
 	
 	public void backward (){
-		if(getHallEffect()){
-			DoorMotor.set(-1.0);
-		}else{
-			DoorMotor.set(0.0);
-		}
+		DoorMotor.set(-1.0);
 	}
 	
 	public void stop (){

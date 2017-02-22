@@ -126,7 +126,7 @@ public class OI {
 		Xbox_A_Button.whileHeld(CollectorIn);
 		Xbox_B_Button.whenPressed(StopShooter);
 		Xbox_X_Button.whileHeld(GearDoorDown);
-		Xbox_Y_Button.whileHeld(GearDoorUp);
+		Xbox_Y_Button.whenPressed(GearDoorUp);
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);

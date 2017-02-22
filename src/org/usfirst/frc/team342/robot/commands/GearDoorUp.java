@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearDoorUp extends Command {
 	
 	private GearSubsystem gearSystem;
+	private boolean finished;
 	
 	public GearDoorUp(){
 		gearSystem = GearSubsystem.getInstance();
+		finished = false;
 	}
 	
 	@Override
@@ -20,12 +22,16 @@ public class GearDoorUp extends Command {
 	@Override
 	protected void execute() {
 		gearSystem.forward();
-		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
+		if(!gearSystem.getHallEffect()){
+			finished = true;
+		}else{
+			finished = false;
+		}
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 	
 	@Override
