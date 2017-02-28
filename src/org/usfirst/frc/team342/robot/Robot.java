@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	
-	private static CamraSystem camraSystem;
+	private static CamraSubsystem camraSystem;
 	private static ClimbSubsystem climbSubsystem;
 	private static DriveSubsystem drive;
 	private static GearSubsystem gearSubsystem;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public Robot(){
-		camraSystem = CamraSystem.getInstance();
+		camraSystem = CamraSubsystem.getInstance();
 		climbSubsystem = ClimbSubsystem.getInstance();
 		drive = DriveSubsystem.getInstance();
 		gearSubsystem = GearSubsystem.getInstance();

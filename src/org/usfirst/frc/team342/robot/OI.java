@@ -72,6 +72,8 @@ public class OI {
 	private Command ReverseLift;
 	private Command DebugInfo;
 	
+	private Command seeWithCamera;
+	
 	public OI (){
 		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
@@ -111,6 +113,7 @@ public class OI {
 		GearDoorDown = new GearDoorDown();
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
+		seeWithCamera = new SeeWithCamera();
 		//DebugInfo = new DebugInfo();
 		
 		//Setting the buttons to their individual commands
@@ -129,6 +132,7 @@ public class OI {
 		Xbox_Y_Button.whenPressed(GearDoorUp);
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
+		Xbox_Back.whenPressed(seeWithCamera);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
 		
 	}

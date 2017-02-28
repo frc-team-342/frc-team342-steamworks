@@ -56,5 +56,9 @@ public class GearSubsystem extends Subsystem {
 		return instance;
 		
 	}
+	
+	public void DebugInfo(){
+		
+	}
 }
 

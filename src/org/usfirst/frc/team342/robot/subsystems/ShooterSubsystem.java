@@ -79,4 +79,8 @@ public class ShooterSubsystem extends Subsystem{
 		return instance;
 	}
 	
+	public void DebugInfo(){
+		
+	}
+	
 }
