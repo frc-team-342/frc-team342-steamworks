@@ -37,6 +37,17 @@ public class OI {
 	private static final int LEFT_STICK_BUTTON = 9;
 	private static final int RIGHT_STICK_BUTTON = 10;
 	
+	private static final int LOG_A_BUTTON = 1;
+	private static final int LOG_B_BUTTON = 2;
+	private static final int LOG_X_BUTTON = 3;
+	private static final int LOG_Y_BUTTON = 4;
+	private static final int LOG_LEFT_BUMPER = 5;
+	private static final int LOG_RIGHT_BUMPER = 6;
+	private static final int LOG_BACK = 7;
+	private static final int LOG_START = 8;
+	private static final int LOG_LS_BUTTON = 9;
+	private static final int LOG_RS_BUTTON = 10;
+	
 	/*private static Button A_Button;
 	private static Button B_Button;
 	private static Button X_Button;
@@ -73,6 +84,7 @@ public class OI {
 	
 	public static Joystick Xbox_Controller;
 	public static Joystick Manipulator_Controller;
+	public static Joystick Log_Controller;
 	
 	private Command CollectorIn;
 	private Command CollectorOut;
@@ -89,6 +101,7 @@ public class OI {
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
 		Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
 		Log_Controller = new Joystick(RobotMap.LOGPORT);
+		
 		//Instantiating all the buttons on each respectable Joystick.
 		//XBOX (Main Controller)
 		Xbox_A_Button = new JoystickButton(Xbox_Controller, A_BUTTON);
@@ -102,7 +115,17 @@ public class OI {
 		Xbox_Left_Stick_Button = new JoystickButton(Xbox_Controller, LEFT_STICK_BUTTON);
 		Xbox_Right_Stick_Button = new JoystickButton(Xbox_Controller, RIGHT_STICK_BUTTON);
 		
-		Log_A_Button = new JoystickButton(Log_Controller, A_Button);
+		Log_A_Button = new JoystickButton(Log_Controller, LOG_A_BUTTON);
+		Log_B_Button = new JoystickButton(Log_Controller, LOG_B_BUTTON);
+		Log_X_Button = new JoystickButton(Log_Controller, LOG_X_BUTTON);
+		Log_Y_Button = new JoystickButton(Log_Controller, LOG_Y_BUTTON);
+		Log_Left_Bumper = new JoystickButton(Log_Controller, LOG_LEFT_BUMPER);
+		Log_Right_Bumper = new JoystickButton(Log_Controller, LOG_RIGHT_BUMPER);
+		Log_Start = new JoystickButton(Log_Controller, LOG_START);
+		Log_Back = new JoystickButton(Log_Controller, LOG_BACK);
+		Log_Left_Stick_Button = new JoystickButton(Log_Controller, LOG_LS_BUTTON);
+		Log_Right_Stick_Button = new JoystickButton(Log_Controller, LOG_RS_BUTTON);
+		
 		
 		//Manipulator Controller (Secondary Controller)
 		/*A_Button = new JoystickButton(Manipulator_Controller, A_BUTTON);

@@ -20,7 +20,7 @@ public class RobotMap {
 	//controls
 	public static final int XBOXPORT = 0;
 	public static final int MANIPULATORPORT = 1;
-	
+	public static final int LOGPORT = 2;
 	//shooter subsystem
 
 	public static final int FSHOOTERMOTOR = 9;
