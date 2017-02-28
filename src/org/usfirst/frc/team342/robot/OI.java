@@ -48,6 +48,7 @@ public class OI {
 	private static Button Left_Stick_Button;
 	private static Button Right_Stick_Button;
 	*/
+	// Xbox controls
 	private static Button Xbox_A_Button;
 	private static Button Xbox_B_Button;
 	private static Button Xbox_X_Button;
@@ -58,6 +59,21 @@ public class OI {
 	private static Button Xbox_Start;
 	private static Button Xbox_Left_Stick_Button;
 	private static Button Xbox_Right_Stick_Button;
+	// Logitech controls
+	private static Button Log_A_Button;
+	private static Button Log_B_Button;
+	private static Button Log_X_Button;
+	private static Button Log_Y_Button;
+	private static Button Log_Left_Bumper;
+	private static Button Log_Right_Bumper;
+	private static Button Log_Back;
+	private static Button Log_Start;
+	private static Button Log_Left_Stick_Button;
+	private static Button Log_Right_Stick_Button;
+	
+	
+	
+	
 	
 	public static Joystick Xbox_Controller;
 	public static Joystick Manipulator_Controller;
