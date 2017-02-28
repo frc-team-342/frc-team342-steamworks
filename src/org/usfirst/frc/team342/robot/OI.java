@@ -71,10 +71,6 @@ public class OI {
 	private static Button Log_Left_Stick_Button;
 	private static Button Log_Right_Stick_Button;
 	
-	
-	
-	
-	
 	public static Joystick Xbox_Controller;
 	public static Joystick Manipulator_Controller;
 	
@@ -92,7 +88,7 @@ public class OI {
 		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
 		Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
-		
+		Log_Controller = new Joystick(RobotMap.LOGPORT);
 		//Instantiating all the buttons on each respectable Joystick.
 		//XBOX (Main Controller)
 		Xbox_A_Button = new JoystickButton(Xbox_Controller, A_BUTTON);
@@ -105,6 +101,8 @@ public class OI {
 		Xbox_Start = new JoystickButton(Xbox_Controller, START);
 		Xbox_Left_Stick_Button = new JoystickButton(Xbox_Controller, LEFT_STICK_BUTTON);
 		Xbox_Right_Stick_Button = new JoystickButton(Xbox_Controller, RIGHT_STICK_BUTTON);
+		
+		Log_A_Button = new JoystickButton(Log_Controller, A_Button);
 		
 		//Manipulator Controller (Secondary Controller)
 		/*A_Button = new JoystickButton(Manipulator_Controller, A_BUTTON);
