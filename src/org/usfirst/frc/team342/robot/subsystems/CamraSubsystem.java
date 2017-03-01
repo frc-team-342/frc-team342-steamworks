@@ -8,15 +8,15 @@ public class CamraSubsystem extends Subsystem {
  
 	private static final CamraSubsystem instance = new CamraSubsystem();
 	private CameraServer camServer;
+	private UsbCamera cam0;
 	private UsbCamera cam1;
-	private UsbCamera cam2;
 	private String curCam;
 	private static final int CAM1 = 0;
 	private static final int CAM2 = 1;
 	
 	private CamraSubsystem(){
-		cam1 = new UsbCamera("Cam1", "dev/cam0");
-		cam2 = new UsbCamera("Cam2", "dev/cam1");
+		cam0 = new UsbCamera("cam0", "dev/cam0");
+		cam1 = new UsbCamera("cam1", "dev/cam1");
 		camServer = CameraServer.getInstance();
 		curCam = cam1.getName();
 	}
@@ -27,22 +27,22 @@ public class CamraSubsystem extends Subsystem {
 	}
 	
 	public void seeWithCamera(String currentCamera){
-		if(currentCamera.equals(cam1.getName())){
+		if(currentCamera.equals(cam0.getName())){
+			camServer.startAutomaticCapture(cam0);
+		}else if(currentCamera.equals(cam1.getName())){
 			camServer.startAutomaticCapture(cam1);
-		}else if(currentCamera.equals(cam2.getName())){
-			camServer.startAutomaticCapture(cam2);
 		}
 	}
 	
 	public void switchCamera(){
-		if(curCam.equals("Cam1")){
-			
-			camServer.removeCamera(curCam);
-			curCam = cam2.getName();
-		}else if(curCam.equals("Cam2")){
+		if(curCam.equals("cam0")){
 			
 			camServer.removeCamera(curCam);
 			curCam = cam1.getName();
+		}else if(curCam.equals("cam1")){
+			
+			camServer.removeCamera(curCam);
+			curCam = cam0.getName();
 		}
 	}
 	
