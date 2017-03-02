@@ -3,6 +3,8 @@ package org.usfirst.frc.team342.robot.subsystems;
 import org.usfirst.frc.team342.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -58,6 +60,40 @@ public class ShooterSubsystem extends Subsystem{
 		}else{
 			return false;
 		}
+	}
+	
+	public void setDriveParameters (){
+		FShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		FShooterMotor.changeControlMode(TalonControlMode.Speed);
+		FShooterMotor.set(0);
+		FShooterMotor.setP(0);
+		FShooterMotor.setI(0);
+		FShooterMotor.setD(0);
+		FShooterMotor.setF(0.037);
+		FShooterMotor.setAllowableClosedLoopErr(100);
+		FShooterMotor.enableBrakeMode(false);
+		
+		RShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		RShooterMotor.changeControlMode(TalonControlMode.Speed);
+		RShooterMotor.set(0);
+		RShooterMotor.setP(0);
+		RShooterMotor.setI(0);
+		RShooterMotor.setD(0);
+		RShooterMotor.setF(0.037);
+		RShooterMotor.setAllowableClosedLoopErr(100);
+		RShooterMotor.enableBrakeMode(false);
+		
+		setUpShooterMotors();
+		
+		setUpShooterMotors();
+		
+		setUpShooterMotors();
+		
+		setUpShooterMotors();
+		
+		setUpShooterMotors();
+		
+		setUpShooterMotors();
 	}
 	
 	public void StopAll(){
