@@ -1,19 +1,28 @@
 package org.usfirst.frc.team342.robot.subsystems;
 
-import org.usfirst.frc.team342.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CamraSystem extends Subsystem {
  
 	private static final CamraSystem instance = new CamraSystem();
-	private Servo Servo1;
-	private Servo Servo2;
+	private CameraServer cameraserver;
+	private UsbCamera usbcamera1;
+	private UsbCamera usbcamer2;
+	private MjpegServer mjserver;
 	
+
 	private CamraSystem(){
-		Servo1 = new Servo (RobotMap.Servo1);
-		Servo2 = new Servo (RobotMap.Servo2);
+		cameraserver = CameraServer.getInstance();
+		mjserver = cameraserver.addServer("Mage");
+		usbcamera1 = new UsbCamera("Camera1", 0);
+	  //usbcamera2 = new UsbCamera("Camera2", 1);
+		usbcamera1.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
+		mjserver.setSource(usbcamera1);
+		
 	}
 	public static CamraSystem getInstance(){
 		return instance;
@@ -24,12 +33,10 @@ public class CamraSystem extends Subsystem {
 		// TODO Auto-generated method stub
 		
 	}
-	public void CameraAim (double Rotation, double Tilt){
-		Rotation = 0.5 * Rotation + 0.5;
-		Tilt = 0.5 * Tilt + 0.5;
-		Servo1.setPosition(Rotation);
-		Servo2.setPosition(Tilt);
+	
+	public void ToggleCamera() {
 		
 	}
+	
 }
 

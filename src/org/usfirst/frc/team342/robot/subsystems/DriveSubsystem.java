@@ -15,6 +15,14 @@ public class DriveSubsystem extends Subsystem {
 
 	private static final DriveSubsystem instance = new DriveSubsystem();
 
+	private static final int FRTurnOffset = 0;
+
+	private static final int RRTurnOffset = 0;
+
+	private static final int RLTurnOffset = 0;
+
+	private static final int FLTurnOffset = 0;
+
 	private CANTalon FRDrive;
 	private CANTalon RRDrive;
 	private CANTalon RLDrive;
@@ -61,7 +69,8 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(0.3);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		FRTurn.setEncPosition((FRTurn.getPulseWidthPosition() % 4096));
+		//FRTurn.setEncPosition((FRTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(FRTurn, FRTurnOffset);
 		FRTurn.enable();
 
 		RRTurn.disable();
@@ -70,7 +79,8 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.setP(0.3);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		RRTurn.setEncPosition((RRTurn.getPulseWidthPosition() % 4096));
+		//RRTurn.setEncPosition((RRTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(RRTurn, RRTurnOffset);
 		RRTurn.enable();
 
 		RLTurn.disable();
@@ -79,7 +89,8 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.setP(0.3);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		RLTurn.setEncPosition((RLTurn.getPulseWidthPosition() % 4096));
+		//RLTurn.setEncPosition((RLTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(RLTurn, RLTurnOffset);
 		RLTurn.enable();
 
 		FLTurn.disable();
@@ -88,7 +99,8 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(0.3);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		FLTurn.setEncPosition((FLTurn.getPulseWidthPosition() % 4096));
+		//FLTurn.setEncPosition((FLTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(FLTurn, FLTurnOffset);
 		FLTurn.enable();
 
 	}
