@@ -1,16 +1,21 @@
 
 package org.usfirst.frc.team342.robot;
 
+import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
+import org.usfirst.frc.team342.robot.subsystems.CamraSystem;
+import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
+import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team342.robot.subsystems.LightsSubsystem;
+import org.usfirst.frc.team342.robot.subsystems.ShooterSubsystem;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team342.robot.commands.DebugLights;
-import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team342.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +36,7 @@ public class Robot extends IterativeRobot {
 	private static ShooterSubsystem shooter;
 	
 	private static Command driveWithJoystick;
+	private static Command LiftJoystick;
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -46,6 +52,10 @@ public class Robot extends IterativeRobot {
 		//lights = LightsSubsystem.getInstance();
 		shooter = ShooterSubsystem.getInstance();
 		oi = OI.getInstance();
+		//commands
+		driveWithJoystick = new DriveWithJoystick();
+		LiftJoystick = new LiftWJoystick();
+		
 	}
 	
 	@Override
@@ -114,7 +124,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		//if (autonomousCommand != null)
 		//	autonomousCommand.cancel();
-		driveWithJoystick = new DriveWithJoystick();
+		driveWithJoystick.start();
+		LiftJoystick.start();
 	}
 
 	/**
@@ -123,7 +134,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		driveWithJoystick.start();
+		//driveWithJoystick.start();
 	}
 
 	/**
