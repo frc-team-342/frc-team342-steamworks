@@ -83,17 +83,6 @@ public class ShooterSubsystem extends Subsystem{
 		RShooterMotor.setAllowableClosedLoopErr(100);
 		RShooterMotor.enableBrakeMode(false);
 		
-		setUpShooterMotors();
-		
-		setUpShooterMotors();
-		
-		setUpShooterMotors();
-		
-		setUpShooterMotors();
-		
-		setUpShooterMotors();
-		
-		setUpShooterMotors();
 	}
 	
 	public void StopAll(){
