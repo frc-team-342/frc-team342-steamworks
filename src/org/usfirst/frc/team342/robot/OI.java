@@ -162,12 +162,15 @@ public class OI {
 		
 		Xbox_A_Button.whileHeld(CollectorIn);
 		Xbox_B_Button.whenPressed(StopShooter);
-		Xbox_X_Button.whileHeld(GearDoorDown);
-		Xbox_Y_Button.whileHeld(GearDoorUp);
+		//Xbox_X_Button.whileHeld(GearDoorDown);
+		//Xbox_Y_Button.whileHeld(GearDoorUp);
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
 		
+		Log_A_Button.whenPressed(GearDoorUp);
+		Log_B_Button.whenPressed(GearDoorDown);
+		//Log_X_Button.whenPressed(command);
 	}
 	
 	public static OI getInstance(){
