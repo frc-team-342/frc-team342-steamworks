@@ -95,11 +95,12 @@ public class OI {
 	private Command LiftStart;
 	private Command ReverseLift;
 	private Command DebugInfo;
+	private Command LiftWJoystick;
 	
 	public OI (){
 		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
-		Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
+		//Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
 		Log_Controller = new Joystick(RobotMap.LOGPORT);
 		
 		//Instantiating all the buttons on each respectable Joystick.
@@ -148,6 +149,7 @@ public class OI {
 		GearDoorDown = new GearDoorDown();
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
+	
 		//DebugInfo = new DebugInfo();
 		
 		//Setting the buttons to their individual commands
@@ -162,11 +164,15 @@ public class OI {
 		
 		Xbox_A_Button.whileHeld(CollectorIn);
 		Xbox_B_Button.whenPressed(StopShooter);
-		Xbox_X_Button.whileHeld(GearDoorDown);
-		Xbox_Y_Button.whileHeld(GearDoorUp);
+		//Xbox_X_Button.whileHeld(GearDoorDown);
+		//Xbox_Y_Button.whileHeld(GearDoorUp);
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
+		
+		Log_A_Button.whenPressed(GearDoorUp);
+		Log_B_Button.whenPressed(GearDoorDown);
+		
 		
 	}
 	

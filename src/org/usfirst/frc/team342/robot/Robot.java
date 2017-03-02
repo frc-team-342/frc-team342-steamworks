@@ -46,6 +46,8 @@ public class Robot extends IterativeRobot {
 		//lights = LightsSubsystem.getInstance();
 		shooter = ShooterSubsystem.getInstance();
 		oi = OI.getInstance();
+		//commands
+		driveWithJoystick = new DriveWithJoystick();
 	}
 	
 	@Override
@@ -114,7 +116,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		//if (autonomousCommand != null)
 		//	autonomousCommand.cancel();
-		driveWithJoystick = new DriveWithJoystick();
+		driveWithJoystick.start();
 	}
 
 	/**
@@ -123,7 +125,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		driveWithJoystick.start();
+		//driveWithJoystick.start();
 	}
 
 	/**
