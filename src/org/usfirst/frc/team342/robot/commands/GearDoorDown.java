@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearDoorDown extends Command {
 
 	private GearSubsystem gearSystem;
+	private double delay = 1.2;
+	private double EndTime;
+	private boolean isclosed;
 	
 	public GearDoorDown(){
 		gearSystem = GearSubsystem.getInstance();
@@ -15,17 +18,19 @@ public class GearDoorDown extends Command {
 	
 	@Override
 	protected void initialize() {
+		EndTime = System.currentTimeMillis() + (delay * 1000);
+		isclosed = ! gearSystem.getHallEffect();
 	}
 
 	@Override
 	protected void execute() {
-		gearSystem.backward();
+		gearSystem.backward();//<----- this one
 		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return (System.currentTimeMillis() > EndTime) || ! isclosed;
 	}
 	
 	@Override
