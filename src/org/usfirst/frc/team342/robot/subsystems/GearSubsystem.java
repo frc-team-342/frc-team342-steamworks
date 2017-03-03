@@ -26,19 +26,19 @@ public class GearSubsystem extends Subsystem {
 	}
 	
 	public void forward (){
-		if(getHallEffect()){
+		//if(getHallEffect()){
 			DoorMotor.set(1.0);
-		}else{
-			DoorMotor.set(0.0);
-		}
+		//}else{
+			//DoorMotor.set(0.0);
+		//}
 	}
 	
 	public void backward (){
-		if(getHallEffect()){
+		//if(getHallEffect()){
 			DoorMotor.set(-1.0);
-		}else{
-			DoorMotor.set(0.0);
-		}
+		//}else{
+			//DoorMotor.set(0.0);
+		//}
 	}
 	
 	public void stop (){

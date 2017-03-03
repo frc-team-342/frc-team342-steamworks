@@ -83,7 +83,7 @@ public class OI {
 	private static Button Log_Right_Stick_Button;
 	
 	public static Joystick Xbox_Controller;
-	public static Joystick Manipulator_Controller;
+	//public static Joystick Manipulator_Controller;
 	public static Joystick Log_Controller;
 	
 	private Command CollectorIn;
@@ -95,11 +95,12 @@ public class OI {
 	private Command LiftStart;
 	private Command ReverseLift;
 	private Command DebugInfo;
+	private Command Conveyer;
 	
 	public OI (){
 		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
-		Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
+		//Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
 		Log_Controller = new Joystick(RobotMap.LOGPORT);
 		
 		//Instantiating all the buttons on each respectable Joystick.
@@ -148,6 +149,8 @@ public class OI {
 		GearDoorDown = new GearDoorDown();
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
+		Conveyer = new ConveyerRun();
+		
 		//ReverseLift = new ReverseLift();
 		//DebugInfo = new DebugInfo();
 		
@@ -161,12 +164,13 @@ public class OI {
 		Left_Stick_Button.whileHeld(DebugInfo);
 		*/
 		
-		Xbox_A_Button.whileHeld(CollectorIn);
+		//Xbox_A_Button.whileHeld(CollectorIn);
 		Xbox_B_Button.whenPressed(StopShooter);
+		Xbox_Right_Bumper.whileHeld(Conveyer);
 		//Xbox_X_Button.whileHeld(GearDoorDown);
 		//Xbox_Y_Button.whileHeld(GearDoorUp);
-		Xbox_Left_Bumper.whileHeld(LiftStart);
-		Xbox_Right_Bumper.whileHeld(CollectorOut);
+		//Xbox_Left_Bumper.whileHeld(LiftStart);
+		//Xbox_Right_Bumper.whileHeld(CollectorOut);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
 		
 		//log or xbox button for reverse lift?
@@ -174,6 +178,8 @@ public class OI {
 		Log_A_Button.whenPressed(GearDoorUp);
 		Log_B_Button.whenPressed(GearDoorDown);
 		//Log_X_Button.whenPressed(command);
+		Log_Right_Bumper.whileHeld(CollectorIn);
+		Log_Back.whileHeld(CollectorOut);
 	}
 	
 	public static OI getInstance(){

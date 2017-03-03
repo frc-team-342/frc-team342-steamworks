@@ -20,11 +20,12 @@ public class GearDoorDown extends Command {
 	protected void initialize() {
 		EndTime = System.currentTimeMillis() + (delay * 1000);
 		isclosed = ! gearSystem.getHallEffect();
+		SmartDashboard.putString("GC", "gear goes down");
 	}
 
 	@Override
 	protected void execute() {
-		gearSystem.backward();//<----- this one
+		gearSystem.forward();//<----- this one
 		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	

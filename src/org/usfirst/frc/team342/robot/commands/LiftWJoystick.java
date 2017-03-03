@@ -27,6 +27,12 @@ public class LiftWJoystick extends Command {
 	
 	protected void execute() {
 		speed = joystick.getRawAxis(1);
+			if(speed > 0.9) {
+				speed = 1.0;
+			}
+			if(speed < -0.9) {
+				speed = -1.0;
+			}
 		climb.Climb(speed);
 	
 	}

@@ -50,8 +50,8 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	
 	public void SpinUpShooters(double speed){
-		FShooterMotor.set(speed);
-		RShooterMotor.set(speed);
+		FShooterMotor.set(speed * 1750);
+		RShooterMotor.set(speed * 2950);
 	}
 	
 	public boolean ShootersSpeedMet(){
@@ -89,6 +89,10 @@ public class ShooterSubsystem extends Subsystem{
 		FShooterMotor.set(0.0);
 		RShooterMotor.set(0.0);
 		IntakeMotor.set(0.0);
+		ConveyerMotor.set(0.0);
+	}
+	
+	public void ConveyerStop(){
 		ConveyerMotor.set(0.0);
 	}
 	
