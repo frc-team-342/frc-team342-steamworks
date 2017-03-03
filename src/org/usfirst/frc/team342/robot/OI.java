@@ -148,6 +148,7 @@ public class OI {
 		GearDoorDown = new GearDoorDown();
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
+		//ReverseLift = new ReverseLift();
 		//DebugInfo = new DebugInfo();
 		
 		//Setting the buttons to their individual commands
@@ -167,6 +168,8 @@ public class OI {
 		Xbox_Left_Bumper.whileHeld(LiftStart);
 		Xbox_Right_Bumper.whileHeld(CollectorOut);
 		//Xbox_Left_Stick_Button.whileHeld(DebugInfo);
+		
+		//log or xbox button for reverse lift?
 		
 		Log_A_Button.whenPressed(GearDoorUp);
 		Log_B_Button.whenPressed(GearDoorDown);
