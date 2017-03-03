@@ -1,8 +1,11 @@
 
 package org.usfirst.frc.team342.robot;
 
+import org.usfirst.frc.team342.robot.commands.DriveFoward;
 import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
+import org.usfirst.frc.team342.robot.commands.ShooterRun;
+import org.usfirst.frc.team342.robot.commands.Useless;
 import org.usfirst.frc.team342.robot.subsystems.CamraSystem;
 import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
@@ -37,6 +40,10 @@ public class Robot extends IterativeRobot {
 	
 	private static Command driveWithJoystick;
 	private static Command LiftJoystick;
+	private static Command ShooterFire;
+	private static Command Drivefoward;
+	private static Command useless;
+	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -55,13 +62,18 @@ public class Robot extends IterativeRobot {
 		//commands
 		driveWithJoystick = new DriveWithJoystick();
 		LiftJoystick = new LiftWJoystick();
-		
+		ShooterFire = new ShooterRun();
 	}
 	
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		useless = new Useless();
+		Drivefoward = new DriveFoward(2.0 );
+		chooser.addDefault("NoAutonomus", useless);
+		chooser.addObject("It's Alive!", Drivefoward);
 		SmartDashboard.putData("Auto mode", chooser);
+		
 	}
 
 	/**
@@ -92,7 +104,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = chooser.getSelected();
+		Command autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -103,7 +115,7 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		//if (autonomousCommand != null)
-		//	autonomousCommand.start();
+			autonomousCommand.start();
 	}
 
 	/**
@@ -126,6 +138,7 @@ public class Robot extends IterativeRobot {
 		//	autonomousCommand.cancel();
 		driveWithJoystick.start();
 		LiftJoystick.start();
+		ShooterFire.start();
 	}
 
 	/**

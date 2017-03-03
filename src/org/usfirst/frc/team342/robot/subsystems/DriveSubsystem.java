@@ -60,8 +60,9 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(1.0);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		resetEncoder(FRTurn, 0);
+		resetEncoder(FRTurn, (176-125) + ((25 / 360) * 4096));
 		FRTurn.enable();
+		FRTurn.setAllowableClosedLoopErr(10);
 		
 		RRTurn.disable();
 		RRTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -69,8 +70,9 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.setP(1.0);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		resetEncoder(FRTurn, 0);
+		resetEncoder(RRTurn, (1500-125));
 		RRTurn.enable();
+		RRTurn.setAllowableClosedLoopErr(10);
 		
 		RLTurn.disable();
 		RLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -78,8 +80,9 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.setP(1.0);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		resetEncoder(FRTurn, 0);
+		resetEncoder(RLTurn, 275);
 		RLTurn.enable();
+		RLTurn.setAllowableClosedLoopErr(10);
 		
 		FLTurn.disable();
 		FLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -87,9 +90,9 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(1.0);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		resetEncoder(FRTurn, 0);
+		resetEncoder(FLTurn, 1255);
 		FLTurn.enable();
-		
+		FLTurn.setAllowableClosedLoopErr(10);
 	}
 	
 	public void DWJmanup(double angle, double speed, double rotation, boolean FelO) {
@@ -113,8 +116,17 @@ public class DriveSubsystem extends Subsystem {
 		double FLoffset = 0.875;
 		
 		// From the NavX
-		double GyRo = NavX.getAngle();
+		double GyRo = (NavX.getAngle() % 360.0) / 360.0;
+			if(GyRo < 0) {
+				GyRo = 1.0 + GyRo;
+			}
 
+			if(FelO) {
+				angle = angle - GyRo;
+				angle = angle % 1.0;
+			}
+			angle = 1.0 -angle;
+			SmartDashboard.putString("AngleValue","" + angle);
 		// setting individual wheels angle	* speed was here
 		tempX = Math.cos(angle * (2 * Math.PI)) * speed;
 		tempY = Math.sin(angle * (2 * Math.PI)) * speed;
@@ -132,10 +144,10 @@ public class DriveSubsystem extends Subsystem {
 		FLX = Math.cos(FLoffset * (Math.PI * 2)) * rotation;
 		FLY = Math.sin(FLoffset * (Math.PI * 2)) * rotation;
 		
-		FRang = calcAngle((FRY + tempY), (FRX + tempX) * -1) / 360.0;
-		BRang = calcAngle((BRY + tempY), (BRX + tempX) * -1) / 360.0;
-		BLang = calcAngle((BLY + tempY), (BLX + tempX) * -1) / 360.0;
-		FLang = calcAngle((FLY + tempY), (FLX + tempX) * -1) / 360.0;
+		FRang = calcAngle((FRY + tempY), (FRX + tempX) * 1) / 360.0;
+		BRang = calcAngle((BRY + tempY), (BRX + tempX) * 1) / 360.0;
+		BLang = calcAngle((BLY + tempY), (BLX + tempX) * 1) / 360.0;
+		FLang = calcAngle((FLY + tempY), (FLX + tempX) * 1) / 360.0;
 		
 		FRpow = Math.sqrt(Math.pow(FRX + tempX, 2) + Math.pow(FRY + tempY, 2));
 		BRpow = Math.sqrt(Math.pow(BRX + tempX, 2) + Math.pow(BRY + tempY, 2));

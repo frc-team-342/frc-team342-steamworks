@@ -28,15 +28,15 @@ public class DriveWithJoystick extends Command {
 	protected void execute() {
 		angle = (Math.abs(joy.getDirectionDegrees() + 360) % 360) / 360;
 		magnitude = joy.getMagnitude();
-		rightStick = joy.getRawAxis(4) * -1;
+		rightStick = joy.getRawAxis(4);// * -1;
 		
 		SmartDashboard.putBoolean("button5: ", joy.getRawButton(5));
 		
 		if(magnitude > 0.15){
 			if(joy.getRawButton(5) == true){
-				driveSystem.DWJmanup(angle, magnitude / 4.0, rightStick, false);
+				driveSystem.DWJmanup(angle, magnitude / 4.0, rightStick, true);
 			}else{
-				driveSystem.DWJmanup(angle, magnitude, rightStick, false);
+				driveSystem.DWJmanup(angle, magnitude, rightStick, true);
 			}
 		}else if(magnitude < 0.15 && Math.abs(rightStick) > 0.15){
 			if(joy.getRawButton(5) == true){

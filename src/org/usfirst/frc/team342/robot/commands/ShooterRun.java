@@ -4,6 +4,7 @@ import org.usfirst.frc.team342.robot.OI;
 import org.usfirst.frc.team342.robot.subsystems.ShooterSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterRun extends Command{
 
@@ -19,7 +20,8 @@ public class ShooterRun extends Command{
 		return false;
 	}
 	protected void execute() {
-		Shooter.SpinUpShooters(OI.Xbox_Controller.getRawAxis(3));
+		Shooter.SpinUpShooters(-OI.Xbox_Controller.getRawAxis(3));
+		SmartDashboard.putString("ShooterSpeed", OI.Xbox_Controller.getRawAxis(3) + "");
 	}
 	
 	

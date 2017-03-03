@@ -25,7 +25,7 @@ public class ShooterSubsystem extends Subsystem{
 		IntakeMotor = new Talon(RobotMap.INTAKEMOTOR);
 		ConveyerMotor = new Talon(RobotMap.CONVEYERMOTOR);
 		
-		setUpShooterMotors();
+		setDriveParameters();
 	}
 	
 	@Override
@@ -50,8 +50,8 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	
 	public void SpinUpShooters(double speed){
-		FShooterMotor.set(speed * 1750);
-		RShooterMotor.set(speed * 2950);
+		FShooterMotor.set(speed * 1750.0);
+		RShooterMotor.set(speed * 2950.0);
 	}
 	
 	public boolean ShootersSpeedMet(){
@@ -66,7 +66,7 @@ public class ShooterSubsystem extends Subsystem{
 		FShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		FShooterMotor.changeControlMode(TalonControlMode.Speed);
 		FShooterMotor.set(0);
-		FShooterMotor.setP(0);
+		FShooterMotor.setP(0.01);
 		FShooterMotor.setI(0);
 		FShooterMotor.setD(0);
 		FShooterMotor.setF(0.037);
@@ -76,7 +76,7 @@ public class ShooterSubsystem extends Subsystem{
 		RShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		RShooterMotor.changeControlMode(TalonControlMode.Speed);
 		RShooterMotor.set(0);
-		RShooterMotor.setP(0);
+		RShooterMotor.setP(0.01);
 		RShooterMotor.setI(0);
 		RShooterMotor.setD(0);
 		RShooterMotor.setF(0.037);
