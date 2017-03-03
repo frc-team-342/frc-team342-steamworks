@@ -149,20 +149,20 @@ public class DriveSubsystem extends Subsystem {
 		BLpow = Math.sqrt(Math.pow(BLX + tempX, 2) + Math.pow(BLY + tempY, 2));
 		FLpow = Math.sqrt(Math.pow(FLX + tempX, 2) + Math.pow(FLY + tempY, 2));
 
-		// setAngle(FRang, FRTurn);
-		// setAngle(BRang, RRTurn);
-		// setAngle(BLang, RLTurn);
-		// setAngle(FLang, FLTurn);
+		setAngle(FRang, FRTurn);
+		setAngle(BRang, RRTurn);
+		setAngle(BLang, RLTurn);
+		setAngle(FLang, FLTurn);
 
 		SmartDashboard.putNumber("FRang: ", FRang);
 		SmartDashboard.putNumber("BRang: ", BRang);
 		SmartDashboard.putNumber("BLang: ", BLang);
 		SmartDashboard.putNumber("FLang: ", FLang);
 
-		// FRDrive.set(FRpow);
-		// RRDrive.set(BRpow);
-		// RLDrive.set(BLpow);
-		// FLDrive.set(FLpow);
+		FRDrive.set(FRpow);
+		RRDrive.set(BRpow);
+		RLDrive.set(BLpow);
+		FLDrive.set(FLpow);
 
 		SmartDashboard.putNumber("FRPOW: ", FRpow);
 		SmartDashboard.putNumber("BRPOW: ", BRpow);

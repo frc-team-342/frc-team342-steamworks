@@ -33,12 +33,14 @@ public class DriveWithJoystick extends Command {
 		angle = (Math.abs(joy.getDirectionDegrees() + 360) % 360) / 360;
 		magnitude = joy.getMagnitude();
 		rightStick = joy.getRawAxis(4);
-		if(magnitude > 0.15){
+		if(magnitude > 0.15 && Math.abs(rightStick) > 0.15 ){
 		driveSystem.DWJmanup(angle, magnitude, rightStick, false);
 			SmartDashboard.putNumber("angle: ", angle);
 			SmartDashboard.putNumber("magnitude: ", magnitude);
 			SmartDashboard.putNumber("axis 4: ", rightStick);
 			SmartDashboard.putBoolean("DIO: ", temp.getHallEffect());
+		}else if(Math.abs(rightStick) > 0.15 && magnitude < 0.15){
+			driveSystem.spinning(rightStick);
 		}
 	}
 	

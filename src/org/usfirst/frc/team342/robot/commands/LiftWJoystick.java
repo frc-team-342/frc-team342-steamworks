@@ -21,14 +21,14 @@ public class LiftWJoystick extends Command {
 		climb = ClimbSubsystem.getInstance();
 		speed = 1.0;
 		joystick = OI.Log_Controller;
-		
-		
 	}
 	
 	protected void execute() {
 		speed = joystick.getRawAxis(1);
-		climb.Climb(speed);
-	
+		if(Math.abs(speed) > 0.15){
+			climb.Climb(speed);
+		}
+		
 	}
 	
 	protected void end() {
@@ -38,6 +38,12 @@ public class LiftWJoystick extends Command {
 	@Override
 	protected void interrupted() {
 		climb.Stop();
+	}
+
+	@Override
+	protected void initialize() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	}
