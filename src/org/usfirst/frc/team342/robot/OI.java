@@ -96,6 +96,7 @@ public class OI {
 	private Command ReverseLift;
 	private Command DebugInfo;
 	private Command Conveyer;
+	private Command ResetFelO;
 	
 	public OI (){
 		//Instantiating all the Joysticks.
@@ -150,6 +151,7 @@ public class OI {
 		GearDoorUp = new GearDoorUp();
 		LiftStart = new LiftStart();
 		Conveyer = new ConveyerRun();
+		ResetFelO = new FelOreset();
 		
 		//ReverseLift = new ReverseLift();
 		//DebugInfo = new DebugInfo();
@@ -167,6 +169,7 @@ public class OI {
 		//Xbox_A_Button.whileHeld(CollectorIn);
 		Xbox_B_Button.whenPressed(StopShooter);
 		Xbox_Right_Bumper.whileHeld(Conveyer);
+		Xbox_Start.whenPressed(ResetFelO);
 		//Xbox_X_Button.whileHeld(GearDoorDown);
 		//Xbox_Y_Button.whileHeld(GearDoorUp);
 		//Xbox_Left_Bumper.whileHeld(LiftStart);

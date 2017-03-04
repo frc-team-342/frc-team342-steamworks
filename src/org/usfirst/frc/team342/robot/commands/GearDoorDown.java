@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearDoorDown extends Command {
 
 	private GearSubsystem gearSystem;
-	private double delay = 1.2;
+	private double delay = 0.8;
 	private double EndTime;
 	private boolean isclosed;
 	
