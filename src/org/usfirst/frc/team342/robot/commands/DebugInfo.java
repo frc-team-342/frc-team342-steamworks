@@ -5,7 +5,7 @@ import org.usfirst.frc.team342.robot.subsystems.*;
 
 public class DebugInfo extends Command {
 
-	private CamraSystem camera;
+	private CameraSystem camera;
 	private ClimbSubsystem climb;
 	private DriveSubsystem drive;
 	private GearSubsystem gearSystem;
@@ -13,7 +13,7 @@ public class DebugInfo extends Command {
 	private ShooterSubsystem shooter;
 	
 	public DebugInfo(){
-		camera = CamraSystem.getInstance();
+		camera = CameraSystem.getInstance();
 		climb = ClimbSubsystem.getInstance();
 		drive = DriveSubsystem.getInstance();
 		gearSystem = GearSubsystem.getInstance();

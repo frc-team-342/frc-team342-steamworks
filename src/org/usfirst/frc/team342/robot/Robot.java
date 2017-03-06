@@ -6,7 +6,7 @@ import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
 import org.usfirst.frc.team342.robot.commands.ShooterRun;
 import org.usfirst.frc.team342.robot.commands.Useless;
-import org.usfirst.frc.team342.robot.subsystems.CamraSystem;
+import org.usfirst.frc.team342.robot.subsystems.CameraSystem;
 import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	
-	private static CamraSystem camraSystem;
+	private static CameraSystem cameraSystem;
 	private static ClimbSubsystem climbSubsystem;
 	private static DriveSubsystem drive;
 	private static GearSubsystem gearSubsystem;
@@ -52,7 +52,8 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public Robot(){
-		camraSystem = CamraSystem.getInstance();
+		cameraSystem = CameraSystem.getInstance();
+		
 		climbSubsystem = ClimbSubsystem.getInstance();
 		drive = DriveSubsystem.getInstance();
 		gearSubsystem = GearSubsystem.getInstance();
@@ -105,6 +106,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Command autonomousCommand = chooser.getSelected();
+		///Command autonomousCenterCommand = chooser.getSelected();
+		//Command autonomousLeftCommand = chooser.getSelected();
+		//Command autonomousRightCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
