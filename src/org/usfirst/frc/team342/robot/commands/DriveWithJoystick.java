@@ -2,15 +2,12 @@ package org.usfirst.frc.team342.robot.commands;
 
 import org.usfirst.frc.team342.robot.OI;
 import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveWithJoystick extends Command {
-	
-	private GearSubsystem temp;
 	
 	private DriveSubsystem driveSystem;
 	private Joystick joy;
@@ -21,7 +18,6 @@ public class DriveWithJoystick extends Command {
 	public DriveWithJoystick(){
 		driveSystem = DriveSubsystem.getInstance();
 		joy = OI.Xbox_Controller;
-		temp = GearSubsystem.getInstance();
 	}
 	
 	@Override
@@ -32,14 +28,26 @@ public class DriveWithJoystick extends Command {
 	protected void execute() {
 		angle = (Math.abs(joy.getDirectionDegrees() + 360) % 360) / 360;
 		magnitude = joy.getMagnitude();
-		rightStick = joy.getRawAxis(4);
+		rightStick = joy.getRawAxis(4);// * -1;
+		
+		SmartDashboard.putBoolean("button5: ", joy.getRawButton(5));
+		
 		if(magnitude > 0.15){
-		driveSystem.DWJmanup(angle, magnitude, rightStick, false);
-			SmartDashboard.putNumber("angle: ", angle);
-			SmartDashboard.putNumber("magnitude: ", magnitude);
-			SmartDashboard.putNumber("axis 4: ", rightStick);
-			SmartDashboard.putBoolean("DIO: ", temp.getHallEffect());
+			if(joy.getRawButton(5) == true){
+				driveSystem.DWJmanup(angle, magnitude / 4.0, rightStick, true);
+			}else{
+				driveSystem.DWJmanup(angle, magnitude, rightStick, true);
+			}
+		}else if(magnitude < 0.15 && Math.abs(rightStick) > 0.15){
+			if(joy.getRawButton(5) == true){
+				driveSystem.spinning(rightStick / 4.0);
+			}else{
+				driveSystem.spinning(rightStick);
+			}
+		}else{
+			driveSystem.stopDrive();
 		}
+		
 	}
 	
 	@Override

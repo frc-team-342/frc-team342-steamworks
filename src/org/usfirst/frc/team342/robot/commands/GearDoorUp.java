@@ -15,17 +15,18 @@ public class GearDoorUp extends Command {
 	
 	@Override
 	protected void initialize() {
+		SmartDashboard.putString("GC","gear goes up");
 	}
 
 	@Override
 	protected void execute() {
-		gearSystem.forward();
+		gearSystem.backward();
 		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return ! gearSystem.getHallEffect();
 	}
 	
 	@Override
