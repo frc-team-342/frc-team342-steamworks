@@ -1,5 +1,7 @@
 package org.usfirst.frc.team342.robot.commands;
 
-public class AutoRight {
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+public class AutoRight extends CommandGroup {
 
 }
