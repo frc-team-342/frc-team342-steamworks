@@ -57,39 +57,42 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.disable();
 		FRTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		FRTurn.changeControlMode(TalonControlMode.Position);
-		FRTurn.setP(0.3);
+		FRTurn.setP(1.0);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		FRTurn.setEncPosition((FRTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(FRTurn, 4045 + ((25 / 360) * 4096));
 		FRTurn.enable();
+		FRTurn.setAllowableClosedLoopErr(10);
 		
 		RRTurn.disable();
 		RRTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		RRTurn.changeControlMode(TalonControlMode.Position);
-		RRTurn.setP(0.3);
+		RRTurn.setP(1.0);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		RRTurn.setEncPosition((RRTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(RRTurn, 1477);
 		RRTurn.enable();
+		RRTurn.setAllowableClosedLoopErr(10);
 		
 		RLTurn.disable();
 		RLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		RLTurn.changeControlMode(TalonControlMode.Position);
-		RLTurn.setP(0.3);
+		RLTurn.setP(1.0);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		RLTurn.setEncPosition((RLTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(RLTurn, 332);
 		RLTurn.enable();
+		RLTurn.setAllowableClosedLoopErr(10);
 		
 		FLTurn.disable();
 		FLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		FLTurn.changeControlMode(TalonControlMode.Position);
-		FLTurn.setP(0.3);
+		FLTurn.setP(1.0);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		FLTurn.setEncPosition((FLTurn.getPulseWidthPosition() % 4096));
+		resetEncoder(FLTurn, 1153);
 		FLTurn.enable();
-		
+		FLTurn.setAllowableClosedLoopErr(10);
 	}
 	
 	public void DWJmanup(double angle, double speed, double rotation, boolean FelO) {
@@ -97,22 +100,38 @@ public class DriveSubsystem extends Subsystem {
 		
 		SmartDashboard.putNumber("AngelRaw: ", angle);
 		
+		angle += 0.75;
+		if(angle > 1){
+			angle = -1 + angle;
+		}
+		
 		double tempX, tempY;
 		double FRX, BRX, BLX, FLX, FRY, BRY, BLY, FLY;
 		double FRang, BRang, BLang, FLang;
 		double FRpow, BRpow, BLpow, FLpow;
 		
-		double FRoffset = 0.125;
-		double BRoffset	= 0.375;
-		double BLoffset = 0.625;
-		double FLoffset = 0.875;
+		double FRoffset = 0.375;
+		double BRoffset	= 0.625;
+		double BLoffset = 0.875;
+		double FLoffset = 0.125;
 		
 		// From the NavX
-		double GyRo = NavX.getAngle();
-
+		double GyRo = (NavX.getAngle() % 360.0) / 360.0;
+			if(GyRo < 0) {
+				GyRo = 1.0 + GyRo;
+				
+			}
+			SmartDashboard.putString("GyRovalue", "" + GyRo);
+			if(FelO) {
+				angle = angle - GyRo;
+				angle = angle % 1.0;
+			}
+			//angle = 1.0 -angle;
+			SmartDashboard.putString("AngleValue","" + angle);
 		// setting individual wheels angle	* speed was here
-		tempX = Math.cos(angle * (2 * Math.PI));
-		tempY = Math.sin(angle * (2 * Math.PI));
+		rotation = rotation * speed * -0.4;
+		tempX = Math.cos(angle * (2 * Math.PI)) * speed;
+		tempY = Math.sin(angle * (2 * Math.PI)) * speed;
 		
 		
 		FRX = Math.cos(FRoffset * (Math.PI * 2)) * rotation;
@@ -132,15 +151,15 @@ public class DriveSubsystem extends Subsystem {
 		BLang = calcAngle((BLY + tempY), (BLX + tempX) * -1) / 360.0;
 		FLang = calcAngle((FLY + tempY), (FLX + tempX) * -1) / 360.0;
 		
-		FRpow = Math.sqrt(Math.pow(FRX + tempX, 2) + Math.pow(FRY + tempY, 2));
-		BRpow = Math.sqrt(Math.pow(BRX + tempX, 2) + Math.pow(BRY + tempY, 2));
-		BLpow = Math.sqrt(Math.pow(BLX + tempX, 2) + Math.pow(BLY + tempY, 2));
-		FLpow = Math.sqrt(Math.pow(FLX + tempX, 2) + Math.pow(FLY + tempY, 2));
+		FRpow = Math.sqrt(Math.pow(FRX + tempX, 2) + Math.pow(FRY + tempY, 2)) * -1;
+		BRpow = Math.sqrt(Math.pow(BRX + tempX, 2) + Math.pow(BRY + tempY, 2)) * -1;
+		BLpow = Math.sqrt(Math.pow(BLX + tempX, 2) + Math.pow(BLY + tempY, 2)) * -1;
+		FLpow = Math.sqrt(Math.pow(FLX + tempX, 2) + Math.pow(FLY + tempY, 2)) * -1;
 		
-		//setAngle(FRang, FRTurn);
-		//setAngle(BRang, RRTurn);
-		//setAngle(BLang, RLTurn);
-		//setAngle(FLang, FLTurn);
+		setAngle(FRang, FRTurn);
+		setAngle(BRang, RRTurn);
+		setAngle(BLang, RLTurn);
+		setAngle(FLang, FLTurn);
 		
 		SmartDashboard.putNumber("X: ", FRX + tempX);
 		SmartDashboard.putNumber("Y: ", (-1.0 * (FRY + tempY)));
@@ -165,10 +184,10 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("BLang: ", BLang);
 		SmartDashboard.putNumber("FLang: ", FLang);
 		
-		//FRDrive.set(FRpow);
-		//RRDrive.set(BRpow);
-		//RLDrive.set(BLpow);
-		//FLDrive.set(FLpow);
+		FRDrive.set(FRpow);
+		RRDrive.set(BRpow);
+		RLDrive.set(BLpow);
+		FLDrive.set(FLpow);
 		
 		SmartDashboard.putNumber("FRPOW: ", FRpow);
 		SmartDashboard.putNumber("BRPOW: ", BRpow);
@@ -234,7 +253,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void resetEncoder(CANTalon talon, int offset){
-		//talon.setEncPosition((talon.getPulseWidthPosition() % 4096) + offset);
 		int holdnum = talon.getPulseWidthPosition();
 			if (holdnum > 0){
 			talon.setEncPosition((holdnum % 4096)+ offset);
@@ -243,7 +261,7 @@ public class DriveSubsystem extends Subsystem {
 			holdnum = holdnum * -1;	
 			holdnum = holdnum % 4096;
 			holdnum = 4096 - holdnum;
-			talon.setEncPosition((holdnum)+ offset);
+			talon.setEncPosition(holdnum + offset);
 			}
 	
 	}
@@ -330,5 +348,4 @@ public class DriveSubsystem extends Subsystem {
 	public void DebugInfo(){
 		
 	}
-	
 }
