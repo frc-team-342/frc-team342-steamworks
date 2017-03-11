@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		useless = new Useless();
 		Drivefoward = new DriveFoward(2.0 );
+		drive.resetGyro();
 		chooser.addDefault("NoAutonomus", useless);
 		chooser.addObject("It's Alive!", Drivefoward);
 		SmartDashboard.putData("Auto mode", chooser);

@@ -8,18 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveWithJoystick extends Command {
-	
+
 	private DriveSubsystem driveSystem;
 	private Joystick joy;
 	private double angle;
 	private double magnitude;
 	private double rightStick;
 
-	public DriveWithJoystick(){
+	public DriveWithJoystick() {
 		driveSystem = DriveSubsystem.getInstance();
 		joy = OI.Xbox_Controller;
 	}
-	
+
 	@Override
 	protected void initialize() {
 	}
@@ -29,32 +29,45 @@ public class DriveWithJoystick extends Command {
 		angle = (Math.abs(joy.getDirectionDegrees() + 360) % 360) / 360;
 		magnitude = joy.getMagnitude();
 		rightStick = joy.getRawAxis(4);// * -1;
-		
+
 		SmartDashboard.putBoolean("button5: ", joy.getRawButton(5));
+		SmartDashboard.putNumber("Gyro", driveSystem.getGyro());
 		
-		if(magnitude > 0.15){
-			if(joy.getRawButton(5) == true){
-				driveSystem.DWJmanup(angle, magnitude / 4.0, rightStick, true);
+		if(joy.getRawButton(3)){
+			driveSystem.changeFront();
+		}
+
+		if (magnitude > 0.15) {
+			if(joy.getRawButton(1)){
+				if (joy.getRawButton(5) == true) {
+					driveSystem.DWJmanupKeepHeading(0.0, magnitude / 4.0, rightStick, true);
+				} else {
+					driveSystem.DWJmanupKeepHeading(0.0, magnitude, rightStick, true);
+				}
 			}else{
-				driveSystem.DWJmanup(angle, magnitude, rightStick, true);
+				if (joy.getRawButton(5) == true) {
+					driveSystem.DWJmanup(angle, magnitude / 4.0, rightStick, true);
+				} else {
+					driveSystem.DWJmanup(angle, magnitude, rightStick, true);
+				}
 			}
-		}else if(magnitude < 0.15 && Math.abs(rightStick) > 0.15){
-			if(joy.getRawButton(5) == true){
+		} else if (magnitude < 0.15 && Math.abs(rightStick) > 0.15) {
+			if (joy.getRawButton(5) == true) {
 				driveSystem.spinning(rightStick / 4.0);
-			}else{
+			} else {
 				driveSystem.spinning(rightStick);
 			}
-		}else{
+		} else {
 			driveSystem.stopDrive();
 		}
-		
+
 	}
-	
+
 	@Override
 	protected boolean isFinished() {
 		return false;
 	}
-	
+
 	@Override
 	protected void end() {
 		driveSystem.stopAll();

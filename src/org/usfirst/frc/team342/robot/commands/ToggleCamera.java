@@ -1,18 +1,14 @@
 package org.usfirst.frc.team342.robot.commands;
 
 import org.usfirst.frc.team342.robot.subsystems.CameraSystem;
-import org.usfirst.frc.team342.robot.subsystems.CamraSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SeeWithCamera extends Command {
-
-private CameraSystem camraSystem;
+public class ToggleCamera extends Command {
+private CameraSystem cameraSystem;
 	
-	//UNUSED DELETE LATER
-
-	public SeeWithCamera(){
-	//	camraSystem = CameraSystem.getInstance();
+	public ToggleCamera(){
+		cameraSystem = CameraSystem.getInstance();
 	}
 	
 	@Override
@@ -21,12 +17,12 @@ private CameraSystem camraSystem;
 
 	@Override
 	protected void execute() {
-		//camraSystem.seeWithCamera(camraSystem.getCurrentCamera());
+		cameraSystem.ToggleCamera();
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 	
 	@Override
