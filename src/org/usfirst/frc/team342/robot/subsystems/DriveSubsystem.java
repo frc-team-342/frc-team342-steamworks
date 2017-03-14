@@ -50,6 +50,7 @@ public class DriveSubsystem extends Subsystem {
 		
 		NavX = new AHRS(SPI.Port.kMXP);
 		NavX.startLiveWindowMode();
+		NavX.reset();
 		
 	}
 	public void setUpRotationMotors(){

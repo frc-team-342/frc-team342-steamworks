@@ -106,6 +106,14 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	public static ShooterSubsystem getInstance (){
 		return instance;
+		
+	}
+	
+	public void ManualShoot(double FrontSpeed,double BackSpeed){
+		
+		FShooterMotor.set(FrontSpeed);
+		RShooterMotor.set(BackSpeed);
+		
 	}
 	
 }
