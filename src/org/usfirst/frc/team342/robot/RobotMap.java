@@ -79,5 +79,12 @@ public class RobotMap {
 	public static final int POWERCONVEYER = 14;
 	public static final int POWERLRDRIVE = 15;
 	public static final int PDPADDR = 16;
+	
+	//DigitalInputs
+	public static final int HALLEFFECT = 9;
+	
+	//AnalogInputs
+	public static final int SHOOTERULTRASONIC = 0;
+	public static final int GEARULTRASONIC = 1;
 }
 

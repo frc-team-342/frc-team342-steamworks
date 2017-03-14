@@ -7,33 +7,28 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftStart extends Command {
 	
 	private ClimbSubsystem climb;
-	private boolean finished;
 	
 	private double speed;
 	
 	public LiftStart(){
 		climb = ClimbSubsystem.getInstance();
-		finished = false;
 		speed = 1.0;
 	}
 
 	@Override
 	protected void initialize() {
+		climb.changeDirection();
 	}
 
 	@Override
 	protected void execute() {
 		climb.Climb(speed);
-		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(finished){
-			return true;
-		}else{
-			return false;
-		}
+		return false;
+		
 	}
 
 	@Override

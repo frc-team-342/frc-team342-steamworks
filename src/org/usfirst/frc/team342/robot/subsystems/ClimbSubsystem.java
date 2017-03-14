@@ -10,18 +10,28 @@ public class ClimbSubsystem extends Subsystem {
 
 	private Talon climbMotor;
 	private PowerDistributionPanel pdp;
+	private boolean direction;
 	
 	private static final ClimbSubsystem INSTANCE = new ClimbSubsystem();
 	
 	public ClimbSubsystem(){
 		climbMotor = new Talon(RobotMap.CLIMBMOTOR);
-		pdp = new PowerDistributionPanel(16);
+		pdp = new PowerDistributionPanel(RobotMap.PDPADDR);
+		direction = false;
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void changeDirection(){
+		if(direction){
+			direction = false;
+		}else{
+			direction = true;
+		}
 	}
 	
 	public void Stop(){
@@ -31,7 +41,11 @@ public class ClimbSubsystem extends Subsystem {
 	
 	
 	public void Climb(double speed){
-		climbMotor.set(speed);
+		if(direction ){
+			climbMotor.set(speed * -1);
+		}else{
+			climbMotor.set(speed);
+		}
 	}
 	
 	public double getCurrent(){
@@ -40,6 +54,10 @@ public class ClimbSubsystem extends Subsystem {
 	
 	public static ClimbSubsystem getInstance(){
 		return INSTANCE;
+	}
+	
+	public void DebugInfo(){
+		
 	}
 
 }
