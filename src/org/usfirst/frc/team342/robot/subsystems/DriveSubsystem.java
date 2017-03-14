@@ -58,6 +58,7 @@ public class DriveSubsystem extends Subsystem {
 
 		NavX = new AHRS(SPI.Port.kMXP);
 		NavX.startLiveWindowMode();
+		NavX.reset();
 
 	}
 
@@ -70,7 +71,7 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
 		// resetEncoder(FRTurn, 4045);
-		resetEncoder(FRTurn, 3766);
+		resetEncoder(FRTurn, 34);
 		FRTurn.enable();
 		FRTurn.setAllowableClosedLoopErr(10);
 
@@ -81,7 +82,7 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
 		// resetEncoder(RRTurn, 1477);
-		resetEncoder(RRTurn, 3379);
+		resetEncoder(RRTurn, 3743);
 		RRTurn.enable();
 		RRTurn.setAllowableClosedLoopErr(10);
 
@@ -92,7 +93,7 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
 		// resetEncoder(RLTurn, 332);
-		resetEncoder(RLTurn, 1343);
+		resetEncoder(RLTurn, 1707);
 		RLTurn.enable();
 		RLTurn.setAllowableClosedLoopErr(10);
 
@@ -103,7 +104,7 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
 		// resetEncoder(FLTurn, 1153);
-		resetEncoder(FLTurn, 3652);
+		resetEncoder(FLTurn, 4016);
 		FLTurn.enable();
 		FLTurn.setAllowableClosedLoopErr(10);
 	}
@@ -255,12 +256,12 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void spinning(double speed) {
-		setAngle(0.625 - .1055, FRTurn);
-		setAngle(0.375 - .1055, FLTurn);
-		setAngle(0.875 - .1055, RRTurn);
-		setAngle(0.125 - .1055, RLTurn);
+		setAngle(0.625 + .375, FRTurn);// testing offset .1055
+		setAngle(0.375 + .375 , FLTurn);
+		setAngle(0.875 + .375, RRTurn);
+		setAngle(0.125 + .375, RLTurn);
 		// ^^^ NEEDS TO BE CHANGED FOR COMPETITION
-
+		speed = speed * -1;
 		// for rotation
 		FRDrive.set(speed);
 		RRDrive.set(speed);

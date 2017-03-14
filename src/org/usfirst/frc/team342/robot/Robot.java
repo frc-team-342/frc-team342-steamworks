@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team342.robot;
 
+import org.usfirst.frc.team342.robot.commands.AutoShootGroup;
 import org.usfirst.frc.team342.robot.commands.DriveFoward;
 import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 	private static Command ShooterFire;
 	private static Command Drivefoward;
 	private static Command useless;
+	private static Command autoShoot;
 	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -70,10 +72,12 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		useless = new Useless();
+		autoShoot = new AutoShootGroup();
 		Drivefoward = new DriveFoward(2.0 );
 		drive.resetGyro();
 		chooser.addDefault("NoAutonomus", useless);
 		chooser.addObject("It's Alive!", Drivefoward);
+		chooser.addObject("Shoot!", autoShoot);
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}

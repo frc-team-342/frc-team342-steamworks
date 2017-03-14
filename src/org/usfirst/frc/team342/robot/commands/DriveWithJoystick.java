@@ -28,7 +28,7 @@ public class DriveWithJoystick extends Command {
 	protected void execute() {
 		angle = (Math.abs(joy.getDirectionDegrees() + 360) % 360) / 360;
 		magnitude = joy.getMagnitude();
-		rightStick = joy.getRawAxis(4);// * -1;
+		rightStick = joy.getRawAxis(4); //* -1;
 
 		SmartDashboard.putBoolean("button5: ", joy.getRawButton(5));
 		SmartDashboard.putNumber("Gyro", driveSystem.getGyro());
