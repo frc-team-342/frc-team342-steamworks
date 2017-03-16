@@ -11,7 +11,6 @@ public class DriveWithJoystick extends Command {
 
 	private DriveSubsystem driveSystem;
 	private Joystick joy;
-	private final double DEADZONE = 0.15;
 	private double angle;
 	private double magnitude;
 	private double rightStick;
@@ -38,12 +37,12 @@ public class DriveWithJoystick extends Command {
 			driveSystem.changeFront();
 		}
 
-		if (magnitude > DEADZONE) {
+		if (magnitude > 0.15) {
 			if(joy.getRawButton(1)){
 				if (joy.getRawButton(5) == true) {
-					driveSystem.DWJmanupKeepHeading(0.0, magnitude / 4.0, rightStick, false);
+					driveSystem.DWJmanupKeepHeading(0.0, magnitude / 4.0, rightStick, true);
 				} else {
-					driveSystem.DWJmanupKeepHeading(0.0, magnitude, rightStick, false);
+					driveSystem.DWJmanupKeepHeading(0.0, magnitude, rightStick, true);
 				}
 			}else{
 				if (joy.getRawButton(5) == true) {
@@ -52,7 +51,7 @@ public class DriveWithJoystick extends Command {
 					driveSystem.DWJmanup(angle, magnitude, rightStick, true);
 				}
 			}
-		} else if (magnitude < DEADZONE && Math.abs(rightStick) > DEADZONE) {
+		} else if (magnitude < 0.15 && Math.abs(rightStick) > 0.15) {
 			if (joy.getRawButton(5) == true) {
 				driveSystem.spinning(rightStick / 4.0);
 			} else {
