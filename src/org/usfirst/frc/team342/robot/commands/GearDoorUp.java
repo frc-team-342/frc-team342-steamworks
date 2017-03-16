@@ -8,30 +8,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearDoorUp extends Command {
 	
 	private GearSubsystem gearSystem;
-	private boolean finished;
 	
 	public GearDoorUp(){
 		gearSystem = GearSubsystem.getInstance();
-		finished = false;
 	}
 	
 	@Override
 	protected void initialize() {
+		SmartDashboard.putString("GC","gear goes up");
 	}
 
 	@Override
 	protected void execute() {
-		gearSystem.forward();
-		if(!gearSystem.getHallEffect()){
-			finished = true;
-		}else{
-			finished = false;
-		}
+		gearSystem.backward();
+		//SmartDashboard.putNumber("Current: ", gearSystem.getCurrent());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		return ! gearSystem.getHallEffect();
 	}
 	
 	@Override

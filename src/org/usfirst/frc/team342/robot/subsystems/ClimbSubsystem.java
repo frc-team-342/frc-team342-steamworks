@@ -55,5 +55,9 @@ public class ClimbSubsystem extends Subsystem {
 	public static ClimbSubsystem getInstance(){
 		return INSTANCE;
 	}
+	
+	public void DebugInfo(){
+		
+	}
 
 }
