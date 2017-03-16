@@ -5,6 +5,7 @@ import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LiftWJoystick extends Command {
 
@@ -15,6 +16,10 @@ public class LiftWJoystick extends Command {
 	}
 	private ClimbSubsystem climb;
 	private double speed;
+	private double direction;
+	private final double DEADZONE = 0.15;
+	private final double HIGH_DEADZONE = 0.90;
+	private double magnitude;
 	private Joystick joystick;
 	
 	public LiftWJoystick(){
@@ -26,14 +31,26 @@ public class LiftWJoystick extends Command {
 	}
 	
 	protected void execute() {
-		speed = joystick.getRawAxis(1);
-			if(speed > 0.9) {
+		magnitude = Math.abs(joystick.getRawAxis(1));
+		
+		if(joystick.getRawAxis(1) >= 0){
+			direction = 1.0;
+		}else{
+			direction = -1.0;
+		}
+		
+		if(magnitude > DEADZONE){
+			if(magnitude > HIGH_DEADZONE){
 				speed = 1.0;
+			}else{
+				speed = magnitude;
 			}
-			if(speed < -0.9) {
-				speed = -1.0;
-			}
-		climb.Climb(speed);
+		}else{
+			speed = 0.0;
+		}
+		
+		SmartDashboard.putNumber("SPEED:", speed);
+		climb.Climb(speed * direction);
 	
 	}
 	
