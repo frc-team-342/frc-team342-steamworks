@@ -3,13 +3,16 @@ package org.usfirst.frc.team342.robot.commands;
 import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GearDoorUp extends Command {
 	
 	private GearSubsystem gearSystem;
+	private boolean finished;
 	
 	public GearDoorUp(){
-		gearSystem = GearSubsystem.Getinstance();
+		gearSystem = GearSubsystem.getInstance();
+		finished = false;
 	}
 	
 	@Override
@@ -19,11 +22,16 @@ public class GearDoorUp extends Command {
 	@Override
 	protected void execute() {
 		gearSystem.forward();
+		if(!gearSystem.getHallEffect()){
+			finished = true;
+		}else{
+			finished = false;
+		}
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 	
 	@Override

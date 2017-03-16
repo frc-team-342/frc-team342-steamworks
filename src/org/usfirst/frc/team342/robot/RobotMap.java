@@ -60,6 +60,30 @@ public class RobotMap {
 	public static final int LRSTEERMOTOR = 7;
 	public static final int LFSTEERMOTOR = 8;
 	
+	//PDP
+	public static final int POWERRRDRIVE = 0;
+	public static final int POWERRSHOOTER = 1;
+	public static final int POWERFSHOOTER = 2;
+	public static final int POWERRFDRIVE = 3;
+	public static final int POWERRRSTEER = 4;
+	public static final int POWERLEDCONTROL = 5;
+	public static final int POWERSPARK = 6;
+	public static final int POWERRFSTEER = 7;
+	public static final int POWERLFSTEER = 8;
+	public static final int POWERINTAKE = 9;
+	public static final int USELESSPRICK = 10;
+	public static final int POWERLRSTEER = 11;
+	public static final int POWERLFDRIVE = 12;
+	public static final int POWERCLIMB = 13;
+	public static final int POWERCONVEYER = 14;
+	public static final int POWERLRDRIVE = 15;
+	public static final int PDPADDR = 16;
 	
+	//DigitalInputs
+	public static final int HALLEFFECT = 9;
+	
+	//AnalogInputs
+	public static final int SHOOTERULTRASONIC = 0;
+	public static final int GEARULTRASONIC = 1;
 }
 

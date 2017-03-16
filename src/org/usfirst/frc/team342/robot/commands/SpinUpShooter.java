@@ -7,10 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SpinUpShooter extends Command {
 
 	private ShooterSubsystem shooterSystem;
+	
+	private double triggerAxis;
+	
 	private boolean shooterAtSpeed;
 	
 	public SpinUpShooter(){
-		shooterSystem = shooterSystem.Getinstance();
+		shooterSystem = shooterSystem.getInstance();
 		shooterAtSpeed = false;
 	}
 	
@@ -20,7 +23,7 @@ public class SpinUpShooter extends Command {
 
 	@Override
 	protected void execute() {
-		shooterSystem.SpinUpShooters();
+		shooterSystem.SpinUpShooters(0.0);;
 	}
 	
 	@Override

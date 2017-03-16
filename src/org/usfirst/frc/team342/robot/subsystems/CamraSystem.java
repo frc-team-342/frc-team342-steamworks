@@ -2,6 +2,7 @@ package org.usfirst.frc.team342.robot.subsystems;
 
 import org.usfirst.frc.team342.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,9 +22,9 @@ public class CamraSystem extends Subsystem {
 	}
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
+			
 	}
+	
 	public void CameraAim (double Rotation, double Tilt){
 		Rotation = 0.5 * Rotation + 0.5;
 		Tilt = 0.5 * Tilt + 0.5;

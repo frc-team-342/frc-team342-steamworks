@@ -8,15 +8,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClimbSubsystem extends Subsystem {
 
-	Talon climbMotor;
-	PowerDistributionPanel pdp;
-	double current = 40;
+	private Talon climbMotor;
+	private PowerDistributionPanel pdp;
+	private boolean direction;
 	
 	private static final ClimbSubsystem INSTANCE = new ClimbSubsystem();
 	
 	public ClimbSubsystem(){
 		climbMotor = new Talon(RobotMap.CLIMBMOTOR);
-		pdp = new PowerDistributionPanel(16);
+		pdp = new PowerDistributionPanel(RobotMap.PDPADDR);
+		direction = false;
 	}
 	
 	@Override
@@ -25,16 +26,26 @@ public class ClimbSubsystem extends Subsystem {
 
 	}
 	
+	public void changeDirection(){
+		if(direction){
+			direction = false;
+		}else{
+			direction = true;
+		}
+	}
+	
 	public void Stop(){
 		climbMotor.set(0.0);
 	}
 	
+	
+	
 	public void Climb(double speed){
-		if (getCurrent()< current){
+		if(direction ){
+			climbMotor.set(speed * -1);
+		}else{
 			climbMotor.set(speed);
-			
 		}
-		
 	}
 	
 	public double getCurrent(){
