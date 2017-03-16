@@ -37,7 +37,8 @@ public class DriveWithJoystick extends Command {
 			driveSystem.changeFront();
 		}
 
-		if (magnitude > 0.15) {
+		if (magnitude > 0.2) {
+			SmartDashboard.putString("stopDrive ", "ScoobyDoobyDo");
 			if(joy.getRawButton(1)){
 				if (joy.getRawButton(5) == true) {
 					driveSystem.DWJmanupKeepHeading(0.0, magnitude / 4.0, rightStick, true);
@@ -51,7 +52,7 @@ public class DriveWithJoystick extends Command {
 					driveSystem.DWJmanup(angle, magnitude, rightStick, true);
 				}
 			}
-		} else if (magnitude < 0.15 && Math.abs(rightStick) > 0.15) {
+		} else if (magnitude < 0.2 && Math.abs(rightStick) > 0.2) {
 			if (joy.getRawButton(5) == true) {
 				driveSystem.spinning(rightStick / 4.0);
 			} else {

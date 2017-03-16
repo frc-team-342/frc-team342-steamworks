@@ -1,15 +1,21 @@
 package org.usfirst.frc.team342.robot.commands;
 
+import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.ShooterSubsystem;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+
 
 public class SpinUpShooter extends Command {
 
 	private ShooterSubsystem shooterSystem;
-	
+	private DriveSubsystem driveSystem;
+	private Joystick joy;
+	private double angle;
 	private double triggerAxis;
-	
+	private double magnitude;
+	private double rightstick;
 	private boolean shooterAtSpeed;
 	
 	public SpinUpShooter(){

@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot {
 	private static Command useless;
 	private static Command Shoot;
 	
+	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -71,7 +72,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		useless = new Useless();
-		Drivefoward = new DriveFoward(2.0 );
+		Drivefoward = new DriveFoward(2.0);
 		Shoot = new TimedManualShoot(2000, 3000, 10);
 		chooser.addDefault("NoAutonomus", useless);
 		chooser.addObject("It's Alive!", Drivefoward);
