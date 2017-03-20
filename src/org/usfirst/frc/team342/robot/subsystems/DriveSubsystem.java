@@ -307,7 +307,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public double getGyro(){
-		return NavX.getAngle();
+		return NavX.getAngle() % 360;
 	}
 	
 	public double calcAngle(double x, double y) {
@@ -384,7 +384,33 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("BLencPos:", RLTurn.getPosition());
 		SmartDashboard.putNumber("FLencPos:", FLTurn.getPosition());
 	}
-
+	
+	public boolean isInAngleDeadzone(double goal){
+		double currentAngle = getGyro();
+		double goalHigh = goal + 40.0;
+		double goalLow = goal - 40.0;
+		
+		if(currentAngle < 0){
+			currentAngle += 360;
+		}
+		if(goalHigh > 360){
+			goalHigh -= 360;
+		}
+		if(goalLow < 0){
+			goalLow += 360;
+		}
+		
+		SmartDashboard.putNumber("curang", currentAngle);
+		SmartDashboard.putNumber("angGoalHigh", goalHigh);
+		SmartDashboard.putNumber("angGoalLow", goalLow);
+		
+		if((currentAngle >= goalLow) && (currentAngle <= goalHigh)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public static DriveSubsystem getInstance() {
 		return instance;
 	}
