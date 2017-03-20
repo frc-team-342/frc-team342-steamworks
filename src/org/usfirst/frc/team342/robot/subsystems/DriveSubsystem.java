@@ -368,7 +368,6 @@ public class DriveSubsystem extends Subsystem {
 			FLDrive.set(0.0);
 			RRDrive.set(0.0);
 			RLDrive.set(0.0);
-			SmartDashboard.putString("stopDrive ", "It worked");
 		}
 	}
 
