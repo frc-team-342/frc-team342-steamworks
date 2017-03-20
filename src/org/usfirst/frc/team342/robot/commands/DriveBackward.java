@@ -19,13 +19,15 @@ public class DriveBackward extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		SmartDashboard.putString("AutoStatus","StartTime " + System.currentTimeMillis() + "Endtime " + Endtime);
+		
 		return (System.currentTimeMillis() > Endtime);
 		
 	}
 	
 	protected void execute(){
 		Drive.DWJmanup(0.5, 0.5, 0.0, true);
+		//SmartDashboard.putString("AutoStatus","StartTime " + System.currentTimeMillis() + "Endtime " + Endtime);
+		
 	}
 	
 	protected void end(){
@@ -36,7 +38,7 @@ public class DriveBackward extends Command {
 		end();
 	}
 	
-	protected void intialize(){
+	protected void initialize(){
 		int MillisTime = (int) (Seconds * 1000.0);
 		Endtime = (System.currentTimeMillis() + MillisTime);
 		SmartDashboard.putString("AutoStatus","StartTime " + System.currentTimeMillis() + "Endtime " + Endtime);
