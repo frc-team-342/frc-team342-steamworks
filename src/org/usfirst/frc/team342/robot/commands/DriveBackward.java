@@ -5,7 +5,7 @@ import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveBackward extends Command{
+public class DriveBackward extends Command {
 	
 	private DriveSubsystem Drive;
 	private long Endtime;
@@ -19,7 +19,7 @@ public class DriveBackward extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		SmartDashboard.putString("AutoStatus","StartTime " + System.currentTimeMillis() + "EndTime " + Endtime);
+		SmartDashboard.putString("AutoStatus","StartTime " + System.currentTimeMillis() + "Endtime " + Endtime);
 		return (System.currentTimeMillis() > Endtime);
 		
 	}
