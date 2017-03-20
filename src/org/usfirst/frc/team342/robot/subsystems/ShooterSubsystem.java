@@ -46,7 +46,7 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	
 	public void ConveyerOn(){
-		ConveyerMotor.set(0.5);
+		ConveyerMotor.set(0.7);
 	}
 	
 	public void SpinUpShooters(double speed){
@@ -111,8 +111,8 @@ public class ShooterSubsystem extends Subsystem{
 	
 	public void ManualShoot(double FrontSpeed,double BackSpeed){
 		
-		FShooterMotor.set(FrontSpeed);
-		RShooterMotor.set(BackSpeed);
+		FShooterMotor.set(FrontSpeed * -1.0);
+		RShooterMotor.set(BackSpeed * -1.0);
 		
 	}
 	

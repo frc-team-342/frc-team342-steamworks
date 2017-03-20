@@ -29,9 +29,17 @@ public class ShooterRun extends Command{
 		return false;
 	}
 	protected void execute() {
+		double JoyTrigNum = OI.Xbox_Controller.getRawAxis(3); 
+		
+		if(JoyTrigNum < .15){
+			JoyTrigNum = 0;
+		}else if(JoyTrigNum > 0.9){
+			JoyTrigNum = 1;
+		}
+		
 		if(!control){
-			Shooter.SpinUpShooters(-OI.Xbox_Controller.getRawAxis(3));
-			SmartDashboard.putString("ShooterSpeed", OI.Xbox_Controller.getRawAxis(3) + "");
+			Shooter.SpinUpShooters(JoyTrigNum * -1.0);
+			SmartDashboard.putString("ShooterSpeed","Trigger " + OI.Xbox_Controller.getRawAxis(3) + "JoyTrigNum " + JoyTrigNum);
 		}else{
 			Shooter.SpinUpShooters(speed);
 			SmartDashboard.putString("ShooterSpeed", speed + "");
