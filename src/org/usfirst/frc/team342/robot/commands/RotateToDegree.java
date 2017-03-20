@@ -11,22 +11,30 @@ public class RotateToDegree extends Command {
 	private double goal;
 	private double goalhigh;
 	private double goallow;
-	private double direction;
+	private boolean direction;
 	private double speed;
+	private double highmodifier;
+	private double lowmodifier;
 
 	public RotateToDegree(double degrees) {
 		drive = DriveSubsystem.getInstance();
 		goal = degrees;
 		goalhigh = goal + 20;
 		goallow = goal - 20;
-		direction = 1.0;
+		direction = true;
 		speed = 0.5;
 
 		if (goalhigh > 360.0) {
-			goalhigh = goalhigh - 360;
+			goalhigh -= 360;
+			goallow -= 360;
+			highmodifier = 0.0;
+			lowmodifier = 360.0;
 		}
 		if (goallow < 0.0) {
 			goallow += 360;
+			goalhigh += 360;
+			highmodifier = 360.0;
+			lowmodifier = 0.0;
 		}
 	}
 
@@ -38,30 +46,30 @@ public class RotateToDegree extends Command {
 	@Override
 	protected void execute() {
 		double angle = drive.getGyro();
-		if(angle < 0.0){
+		if (angle < 0.0) {
 			angle += 360;
 		}
 
-		if ((angle < goalhigh) && (angle > goallow)) {
+		if (((angle + highmodifier) < goalhigh) && ((angle + lowmodifier) > goallow)) {
 			speed = 0.2;
 		}
 
 		if ((goal > 180) && (angle < (goal - 180))) {
 			angle += 360;
 		}
-		if ((angle - goal < 180.0) && !((angle - goal) < 0.0)) {
-			direction = -1.0;
+		if (((angle - goal) < 180.0) && !((angle - goal) < 0.0)) {
+			direction = false;
 		}
 
-		SmartDashboard.putNumber("Gyro", drive.getGyro());
-		SmartDashboard.putNumber("angle", angle);
-		SmartDashboard.putNumber("Speed", speed);
-		SmartDashboard.putNumber("Direction", direction);
-		SmartDashboard.putNumber("GoalHigh", goalhigh);
-		SmartDashboard.putNumber("GoalLow", goallow);
+		if (!direction) {
+			speed = speed * -1;
+		}
 		
-		speed = speed * -1;
-		drive.spinning(speed * direction);
+		SmartDashboard.putNumber("angle", angle);
+		SmartDashboard.putNumber("speed", speed);
+		
+
+		drive.spinning(speed);
 	}
 
 	@Override
@@ -71,12 +79,13 @@ public class RotateToDegree extends Command {
 
 	@Override
 	protected void end() {
-
+		drive.stopAll();
+		speed = 0.5;
 	}
 
 	@Override
 	protected void interrupted() {
-
+		drive.stopAll();
 	}
 
 }
