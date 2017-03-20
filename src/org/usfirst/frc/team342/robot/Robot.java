@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("NoAutonomus", useless);
 		chooser.addObject("It's Alive!", Drivefoward);
 		chooser.addObject("Shoot!", autoShoot);
-		chooser.addObject("Rotate to 0 deg!", autoRotate);
+		chooser.addObject("Rotate 180 deg!", autoRotate);
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}

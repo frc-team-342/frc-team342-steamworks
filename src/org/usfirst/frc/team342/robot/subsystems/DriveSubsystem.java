@@ -307,7 +307,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public double getGyro(){
-		return NavX.getAngle() % 360;
+		return Math.abs(NavX.getAngle() % 360);
 	}
 	
 	public double calcAngle(double x, double y) {
@@ -387,28 +387,39 @@ public class DriveSubsystem extends Subsystem {
 	
 	public boolean isInAngleDeadzone(double goal){
 		double currentAngle = getGyro();
-		double goalHigh = goal + 40.0;
-		double goalLow = goal - 40.0;
+		double goalHigh = goal + 20.0;
+		double goalLow = goal - 20.0;
+		double highmodifier = 0.0;
+		double lowmodifier = 0.0;
+		boolean indeadzone;
 		
 		if(currentAngle < 0){
 			currentAngle += 360;
 		}
 		if(goalHigh > 360){
 			goalHigh -= 360;
+			goalLow -= 360;
+			highmodifier = 0.0;
+			lowmodifier = 360.0;
 		}
 		if(goalLow < 0){
 			goalLow += 360;
+			goalHigh += 360;
+			highmodifier = 360.0;
+			lowmodifier = 0.0;
 		}
 		
 		SmartDashboard.putNumber("curang", currentAngle);
 		SmartDashboard.putNumber("angGoalHigh", goalHigh);
 		SmartDashboard.putNumber("angGoalLow", goalLow);
 		
-		if((currentAngle >= goalLow) && (currentAngle <= goalHigh)){
-			return true;
+		if(((currentAngle + lowmodifier) >= goalLow) && ((currentAngle + highmodifier) <= goalHigh)){
+			indeadzone = true;
 		}else{
-			return false;
+			indeadzone = false;
 		}
+		
+		return indeadzone;
 	}
 	
 	public static DriveSubsystem getInstance() {
