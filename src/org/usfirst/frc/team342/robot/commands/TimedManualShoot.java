@@ -30,6 +30,7 @@ public class TimedManualShoot extends Command {
 		Endtime = System.currentTimeMillis() + (Delay * 1000);
 		
 		SmartDashboard.putString("TS", "It's Working!");
+		shooter.setDriveParametersAuto();
 	}
 
 	protected void execute(){

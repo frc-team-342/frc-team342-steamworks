@@ -28,6 +28,11 @@ public class ShooterRun extends Command{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	protected void initialize(){
+	
+		Shooter.setDriveParameters();
+	}
+
 	protected void execute() {
 		double JoyTrigNum = OI.Xbox_Controller.getRawAxis(3); 
 		

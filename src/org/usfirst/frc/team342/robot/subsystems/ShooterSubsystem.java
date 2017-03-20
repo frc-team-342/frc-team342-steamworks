@@ -50,8 +50,8 @@ public class ShooterSubsystem extends Subsystem{
 	}
 	
 	public void SpinUpShooters(double speed){
-		FShooterMotor.set(speed * 1750.0);
-		RShooterMotor.set(speed * 2950.0);
+		FShooterMotor.set(speed * 2300.0);
+		RShooterMotor.set(speed * 3500.0);
 	}
 	
 	public boolean ShootersSpeedMet(){
@@ -66,20 +66,43 @@ public class ShooterSubsystem extends Subsystem{
 		FShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		FShooterMotor.changeControlMode(TalonControlMode.Speed);
 		FShooterMotor.set(0);
-		FShooterMotor.setP(0.01);
+		FShooterMotor.setP(0);
 		FShooterMotor.setI(0);
-		FShooterMotor.setD(0);
-		FShooterMotor.setF(0.037);
+		FShooterMotor.setD();
+		FShooterMotor.setF(0.0582);
 		FShooterMotor.setAllowableClosedLoopErr(100);
 		FShooterMotor.enableBrakeMode(false);
 		
 		RShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		RShooterMotor.changeControlMode(TalonControlMode.Speed);
 		RShooterMotor.set(0);
-		RShooterMotor.setP(0.01);
+		RShooterMotor.setP(0);
 		RShooterMotor.setI(0);
-		RShooterMotor.setD(0);
-		RShooterMotor.setF(0.037);
+		RShooterMotor.setD(4);
+		RShooterMotor.setF(0.0335);
+		RShooterMotor.setAllowableClosedLoopErr(100);
+		RShooterMotor.enableBrakeMode(false);
+		
+	}
+	
+	public void setDriveParametersAuto (){
+		FShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		FShooterMotor.changeControlMode(TalonControlMode.Speed);
+		FShooterMotor.set(0);
+		FShooterMotor.setP(0);
+		FShooterMotor.setI(0);
+		FShooterMotor.setD(4);
+		FShooterMotor.setF(0.0597);
+		FShooterMotor.setAllowableClosedLoopErr(100);
+		FShooterMotor.enableBrakeMode(false);
+		
+		RShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		RShooterMotor.changeControlMode(TalonControlMode.Speed);
+		RShooterMotor.set(0);
+		RShooterMotor.setP(0);
+		RShooterMotor.setI(0);
+		RShooterMotor.setD(4);
+		RShooterMotor.setF(0.0345);
 		RShooterMotor.setAllowableClosedLoopErr(100);
 		RShooterMotor.enableBrakeMode(false);
 		
