@@ -1,11 +1,12 @@
 
 package org.usfirst.frc.team342.robot;
 
+import org.usfirst.frc.team342.robot.commands.AutoShootGroup;
 import org.usfirst.frc.team342.robot.commands.DriveFoward;
 import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
+import org.usfirst.frc.team342.robot.commands.RotateToDegree;
 import org.usfirst.frc.team342.robot.commands.ShooterRun;
-import org.usfirst.frc.team342.robot.commands.TimedManualShoot;
 import org.usfirst.frc.team342.robot.commands.Useless;
 import org.usfirst.frc.team342.robot.subsystems.CameraSystem;
 import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
@@ -44,7 +45,8 @@ public class Robot extends IterativeRobot {
 	private static Command ShooterFire;
 	private static Command Drivefoward;
 	private static Command useless;
-	private static Command Shoot;
+	private static Command autoShoot;
+	private static Command autoRotate;
 	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -72,11 +74,14 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		useless = new Useless();
-		Drivefoward = new DriveFoward(2.0);
-		Shoot = new TimedManualShoot(2000, 3000, 10);
+		autoShoot = new AutoShootGroup();
+		Drivefoward = new DriveFoward(2.0 );
+		autoRotate = new RotateToDegree(180.0);
+		drive.resetGyro();
 		chooser.addDefault("NoAutonomus", useless);
 		chooser.addObject("It's Alive!", Drivefoward);
-		chooser.addObject("ShooterAuto", Shoot);
+		chooser.addObject("Shoot!", autoShoot);
+		chooser.addObject("Rotate to 0 deg!", autoRotate);
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}
@@ -110,20 +115,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Command autonomousCommand = chooser.getSelected();
-		///Command autonomousCenterCommand = chooser.getSelected();
-		//Command autonomousLeftCommand = chooser.getSelected();
-		//Command autonomousRightCommand = chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		//if (autonomousCommand != null)
-			autonomousCommand.start();
+		autonomousCommand.start();
 	}
 
 	/**
