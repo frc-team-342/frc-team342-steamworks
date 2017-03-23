@@ -1,13 +1,13 @@
 
 package org.usfirst.frc.team342.robot;
 
+import org.usfirst.frc.team342.robot.commands.AngleSetToZero;
 import org.usfirst.frc.team342.robot.commands.AutoShootGroup;
 import org.usfirst.frc.team342.robot.commands.DriveFoward;
 import org.usfirst.frc.team342.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team342.robot.commands.LiftWJoystick;
 import org.usfirst.frc.team342.robot.commands.RotateToDegree;
 import org.usfirst.frc.team342.robot.commands.ShooterRun;
-import org.usfirst.frc.team342.robot.commands.Useless;
 import org.usfirst.frc.team342.robot.subsystems.CameraSystem;
 import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.DriveSubsystem;
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		useless = new Useless();
+		useless = new AngleSetToZero();
 		autoShoot = new AutoShootGroup();
 		DriveForward = new DriveFoward(2.0 );
 		autoRotate = new RotateToDegree(180.0);

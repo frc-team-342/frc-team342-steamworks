@@ -18,7 +18,7 @@ public class AngleSetToZero extends Command {
 
 	@Override
 	protected void execute() {
-		drive.DWJmanup(0.0, 0.2, 0.0, true);
+		drive.ResetAngle();
 	}
 	
 	@Override

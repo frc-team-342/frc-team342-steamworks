@@ -70,8 +70,8 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(1.0);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		// resetEncoder(FRTurn, 4045);
-		resetEncoder(FRTurn, 34);
+		resetEncoder(FRTurn, 4045);
+		//resetEncoder(FRTurn, 34);
 		FRTurn.enable();
 		FRTurn.setAllowableClosedLoopErr(10);
 
@@ -81,8 +81,8 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.setP(1.0);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		// resetEncoder(RRTurn, 1477);
-		resetEncoder(RRTurn, 3743);
+		resetEncoder(RRTurn, 1477);
+		//resetEncoder(RRTurn, 3743);
 		RRTurn.enable();
 		RRTurn.setAllowableClosedLoopErr(10);
 
@@ -92,8 +92,8 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.setP(1.0);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		// resetEncoder(RLTurn, 332);
-		resetEncoder(RLTurn, 1707);
+		resetEncoder(RLTurn, 332);
+		//resetEncoder(RLTurn, 1707);
 		RLTurn.enable();
 		RLTurn.setAllowableClosedLoopErr(10);
 
@@ -103,8 +103,8 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(1.0);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		// resetEncoder(FLTurn, 1153);
-		resetEncoder(FLTurn, 4016);
+		resetEncoder(FLTurn, 1153);
+		//resetEncoder(FLTurn, 4016);
 		FLTurn.enable();
 		FLTurn.setAllowableClosedLoopErr(10);
 	}
@@ -235,6 +235,14 @@ public class DriveSubsystem extends Subsystem {
 		}
 	}
 
+	public void ResetAngle(){
+		double anglestore = 0.0;
+		setAngle(anglestore, FRTurn);
+		setAngle(anglestore, FLTurn);
+		setAngle(anglestore, RRTurn);
+		setAngle(anglestore, RLTurn);
+	}
+	
 	public void setAngle(double angle, CANTalon talon) {
 		double actual = talon.getPosition();
 
