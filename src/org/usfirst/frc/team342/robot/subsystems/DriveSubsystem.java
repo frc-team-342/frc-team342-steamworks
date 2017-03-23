@@ -400,9 +400,9 @@ public class DriveSubsystem extends Subsystem {
 			goalLow += 360;
 		}
 		
-		SmartDashboard.putNumber("curang", currentAngle);
-		SmartDashboard.putNumber("angGoalHigh", goalHigh);
-		SmartDashboard.putNumber("angGoalLow", goalLow);
+		//SmartDashboard.putNumber("curang", currentAngle);
+		//SmartDashboard.putNumber("angGoalHigh", goalHigh);
+		//SmartDashboard.putNumber("angGoalLow", goalLow);
 		
 		if((currentAngle >= goalLow) && (currentAngle <= goalHigh)){
 			return true;

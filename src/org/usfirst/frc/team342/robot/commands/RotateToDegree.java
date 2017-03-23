@@ -65,8 +65,8 @@ public class RotateToDegree extends Command {
 			speed = speed * -1;
 		}
 		
-		SmartDashboard.putNumber("angle", angle);
-		SmartDashboard.putNumber("speed", speed);
+		//SmartDashboard.putNumber("angle", angle);
+		//SmartDashboard.putNumber("speed", speed);
 		
 
 		drive.spinning(speed);
