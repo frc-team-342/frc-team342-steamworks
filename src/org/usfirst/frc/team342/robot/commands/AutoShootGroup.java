@@ -21,9 +21,11 @@ public class AutoShootGroup extends CommandGroup {
 			Blue = false;
 		}
 		if(Blue){
+				addSequential(new AngleSetToZero());
 				addSequential(new TimedManualShoot(BlueFRSpeedSetting, BlueBKSpeedSetting, Time));
 				addSequential(new DriveFoward(2.0));
 			}else{
+				addSequential(new AngleSetToZero());
 				addSequential(new DriveFoward(1.0));
 				addSequential(new RotateToDegree(180));
 				addSequential(new DriveBackward(1.0));

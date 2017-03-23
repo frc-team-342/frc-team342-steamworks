@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 	private static Command driveWithJoystick;
 	private static Command LiftJoystick;
 	private static Command ShooterFire;
-	private static Command Drivefoward;
+	private static Command DriveForward;
 	private static Command useless;
 	private static Command autoShoot;
 	private static Command autoRotate;
@@ -75,13 +75,13 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		useless = new Useless();
 		autoShoot = new AutoShootGroup();
-		Drivefoward = new DriveFoward(2.0 );
+		DriveForward = new DriveFoward(2.0 );
 		autoRotate = new RotateToDegree(180.0);
 		drive.resetGyro();
 		chooser.addDefault("NoAutonomus", useless);
-		chooser.addObject("It's Alive!", Drivefoward);
+		chooser.addObject("Drive Forward", DriveForward);
 		chooser.addObject("Shoot!", autoShoot);
-		chooser.addObject("Rotate to 0 deg!", autoRotate);
+		chooser.addObject("Rotate to 180 Degrees", autoRotate);
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}
