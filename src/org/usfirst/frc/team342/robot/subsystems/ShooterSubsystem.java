@@ -91,7 +91,7 @@ public class ShooterSubsystem extends Subsystem{
 		FShooterMotor.set(0);
 		FShooterMotor.setP(0);
 		FShooterMotor.setI(0);
-		FShooterMotor.setD(4);
+		FShooterMotor.setD(5);
 		FShooterMotor.setF(0.0597);
 		FShooterMotor.setAllowableClosedLoopErr(100);
 		FShooterMotor.enableBrakeMode(false);
@@ -101,7 +101,7 @@ public class ShooterSubsystem extends Subsystem{
 		RShooterMotor.set(0);
 		RShooterMotor.setP(0);
 		RShooterMotor.setI(0);
-		RShooterMotor.setD(4);
+		RShooterMotor.setD(5);
 		RShooterMotor.setF(0.0345);
 		RShooterMotor.setAllowableClosedLoopErr(100);
 		RShooterMotor.enableBrakeMode(false);

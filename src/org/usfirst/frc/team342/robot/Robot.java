@@ -128,10 +128,10 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = useless;
 			break;
 		case 2:
-			autonomousCommand = autoShoot;
+			autonomousCommand = DriveForward;
 			break;
 		case 3:
-			autonomousCommand = DriveForward;
+			autonomousCommand = autoShoot;
 			break;
 		case 4:
 			autonomousCommand = autoRotate;
