@@ -17,17 +17,18 @@ public class AutoShootGroup extends CommandGroup {
 		boolean Blue = true;
 		DriverStation DS = DriverStation.getInstance();
 		SmartDashboard.putString("Alliance Color", DS.getAlliance().toString());
-		if(DS.getAlliance() == Alliance.Red){
+		SmartDashboard.putString("StartedAutoShoot","Started");
+		if(DS.getAlliance().toString().equals("Red")){
 			Blue = false;
+			SmartDashboard.putString("StartedAutoShoot","Red");
 		}
 		if(Blue){
-				addSequential(new AngleSetToZero());
+			SmartDashboard.putString("StartedAutoShoot","Blue");
 				addSequential(new TimedManualShoot(BlueFRSpeedSetting, BlueBKSpeedSetting, Time));
 				addSequential(new DriveFoward(2.0));
 			}else{
-				addSequential(new AngleSetToZero());
 				addSequential(new DriveFoward(1.0));
-				addSequential(new RotateToDegree(180));
+				addSequential(new RotateToDegree(135.0));
 				addSequential(new DriveBackward(1.0));
 				addSequential(new TimedManualShoot(RedFRSpeedSetting, RedBKSpeedSetting, Time));
 				addSequential(new DriveFoward(2.0));

@@ -46,10 +46,7 @@ public class RotateToDegree extends Command {
 	@Override
 	protected void execute() {
 		double angle = drive.getGyro();
-		if (angle < 0.0) {
-			angle += 360;
-		}
-
+		
 		if (((angle + highmodifier) < goalhigh) && ((angle + lowmodifier) > goallow)) {
 			speed = 0.2;
 		}
@@ -57,13 +54,15 @@ public class RotateToDegree extends Command {
 		if ((goal > 180) && (angle < (goal - 180))) {
 			angle += 360;
 		}
-		if (((angle - goal) < 180.0) && !((angle - goal) < 0.0)) {
-			direction = false;
-		}
+		
+		//if (((angle - goal) < 180.0) && !((angle - goal) < 0.0)) {
+			//direction = false;
+		//}
+		
 
-		if (!direction) {
-			speed = speed * -1;
-		}
+		//if (!direction) {
+			//speed = speed * -1;
+		//}
 		
 		//SmartDashboard.putNumber("angle", angle);
 		//SmartDashboard.putNumber("speed", speed);

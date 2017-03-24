@@ -70,7 +70,7 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(1.0);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		resetEncoder(FRTurn, 4045);
+		resetEncoder(FRTurn, 4045 + 193);
 		//resetEncoder(FRTurn, 34);
 		FRTurn.enable();
 		FRTurn.setAllowableClosedLoopErr(10);
@@ -81,7 +81,7 @@ public class DriveSubsystem extends Subsystem {
 		RRTurn.setP(1.0);
 		RRTurn.reverseSensor(true);
 		RRTurn.reverseOutput(true);
-		resetEncoder(RRTurn, 1477);
+		resetEncoder(RRTurn, 1477 - 74);
 		//resetEncoder(RRTurn, 3743);
 		RRTurn.enable();
 		RRTurn.setAllowableClosedLoopErr(10);
@@ -92,7 +92,7 @@ public class DriveSubsystem extends Subsystem {
 		RLTurn.setP(1.0);
 		RLTurn.reverseOutput(true);
 		RLTurn.reverseSensor(true);
-		resetEncoder(RLTurn, 332);
+		resetEncoder(RLTurn, 332 - 114);
 		//resetEncoder(RLTurn, 1707);
 		RLTurn.enable();
 		RLTurn.setAllowableClosedLoopErr(10);
@@ -103,7 +103,7 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(1.0);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		resetEncoder(FLTurn, 1153);
+		resetEncoder(FLTurn, 1153 + 91);
 		//resetEncoder(FLTurn, 4016);
 		FLTurn.enable();
 		FLTurn.setAllowableClosedLoopErr(10);
@@ -264,10 +264,10 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void spinning(double speed) {
-		setAngle(0.625 + .375, FRTurn);// testing offset .1055
-		setAngle(0.375 + .375 , FLTurn);
-		setAngle(0.875 + .375, RRTurn);
-		setAngle(0.125 + .375, RLTurn);
+		setAngle(0.875 , FRTurn);// testing offset .1055
+		setAngle(0.625 , FLTurn);
+		setAngle(0.125 , RRTurn);
+		setAngle(0.375 , RLTurn);
 		// ^^^ NEEDS TO BE CHANGED FOR COMPETITION
 		speed = speed * -1;
 		// for rotation
@@ -395,8 +395,8 @@ public class DriveSubsystem extends Subsystem {
 	
 	public boolean isInAngleDeadzone(double goal){
 		double currentAngle = getGyro();
-		double goalHigh = goal + 40.0;
-		double goalLow = goal - 40.0;
+		double goalHigh = goal + 10.0;
+		double goalLow = goal - 10.0;
 		
 		if(currentAngle < 0){
 			currentAngle += 360;

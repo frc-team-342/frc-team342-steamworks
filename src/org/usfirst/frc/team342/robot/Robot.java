@@ -15,6 +15,7 @@ import org.usfirst.frc.team342.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.LightsSubsystem;
 import org.usfirst.frc.team342.robot.subsystems.ShooterSubsystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -40,6 +41,8 @@ public class Robot extends IterativeRobot {
 	private static LightsSubsystem lights;
 	private static ShooterSubsystem shooter;
 	
+	private static DriverStation DS;
+	
 	private static Command driveWithJoystick;
 	private static Command LiftJoystick;
 	private static Command ShooterFire;
@@ -47,9 +50,10 @@ public class Robot extends IterativeRobot {
 	private static Command useless;
 	private static Command autoShoot;
 	private static Command autoRotate;
+
 	
 	
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Integer> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -57,6 +61,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public Robot(){
 		cameraSystem = CameraSystem.getInstance();
+		
+		DS = DriverStation.getInstance();
 		
 		climbSubsystem = ClimbSubsystem.getInstance();
 		drive = DriveSubsystem.getInstance();
@@ -73,16 +79,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		useless = new AngleSetToZero();
-		autoShoot = new AutoShootGroup();
-		DriveForward = new DriveFoward(2.0 );
-		autoRotate = new RotateToDegree(180.0);
+		
 		drive.resetGyro();
-		chooser.addDefault("NoAutonomus", useless);
-		chooser.addObject("Drive Forward", DriveForward);
-		chooser.addObject("Shoot!", autoShoot);
-		chooser.addObject("Rotate to 180 Degrees", autoRotate);
+		chooser.addDefault("NoAutonomus", 1);
+		chooser.addObject("Drive Forward", 2);
+		chooser.addObject("Shoot!", 3);
+		chooser.addObject("Rotate to 180 Degrees", 4);
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putString("Alliance", DS.getAlliance().toString());
 		
 	}
 
@@ -114,7 +118,29 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		Command autonomousCommand = chooser.getSelected();
+		Command autonomousCommand;
+		useless = new AngleSetToZero();
+		autoShoot = new AutoShootGroup();
+		DriveForward = new DriveFoward(2.0);
+		autoRotate = new RotateToDegree(180.0); 
+		switch(chooser.getSelected()){
+		case 1: 
+			autonomousCommand = useless;
+			break;
+		case 2:
+			autonomousCommand = autoShoot;
+			break;
+		case 3:
+			autonomousCommand = DriveForward;
+			break;
+		case 4:
+			autonomousCommand = autoRotate;
+			break;
+		default:
+			autonomousCommand = DriveForward;
+			break;
+		}
+		
 		autonomousCommand.start();
 	}
 

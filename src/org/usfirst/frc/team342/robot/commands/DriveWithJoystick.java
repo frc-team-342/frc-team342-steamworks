@@ -11,7 +11,7 @@ public class DriveWithJoystick extends Command {
 
 	private DriveSubsystem driveSystem;
 	private Joystick joy;
-	private final double DEADZONE = 0.15;
+	private final double DEADZONE = 0.3;
 	private double angle;
 	private double magnitude;
 	private double rightStick;
