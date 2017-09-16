@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 	private static Command autoShoot;
 	private static Command autoRotate;
 	
-	
+	SendableChooser<Integer> control = new SendableChooser<>();
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -56,6 +56,14 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public Robot(){
+		control.addDefault("Unchosen", 0);
+		control.addObject("Joystick", 1);
+		control.addObject("Xbox", 2);
+		
+		while(control.getSelected() == 0){
+			SmartDashboard.putString("SELECT A VALUE", "SELECT A VALUE");
+		}
+		
 		cameraSystem = CameraSystem.getInstance();
 		
 		climbSubsystem = ClimbSubsystem.getInstance();
