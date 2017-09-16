@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team342.robot.commands.*;
 
 /**
@@ -36,6 +38,19 @@ public class OI {
 	private static final int LOG_LS_BUTTON = 9;
 	private static final int LOG_RS_BUTTON = 10;
 	
+	private static final int LOG_3D_BUTTON_ONE = 1;
+	private static final int LOG_3D_BUTTON_TWO = 2;
+	private static final int LOG_3D_BUTTON_THREE = 3;
+	private static final int LOG_3D_BUTTON_FOUR = 4;
+	private static final int LOG_3D_BUTTON_FIVE = 5;
+	private static final int LOG_3D_BUTTON_SIX = 6;
+	private static final int LOG_3D_BUTTON_SEVEN = 7;
+	private static final int LOG_3D_BUTTON_EIGHT = 8;
+	private static final int LOG_3D_BUTTON_NINE = 9;
+	private static final int LOG_3D_BUTTON_TEN = 10;
+	private static final int LOG_3D_BUTTON_ELEVEN = 11;
+	private static final int LOG_3D_BUTTON_TWELVE = 12;
+	
 	// Xbox controls
 	private static Button Xbox_A_Button;
 	private static Button Xbox_B_Button;
@@ -48,7 +63,7 @@ public class OI {
 	private static Button Xbox_Left_Stick_Button;
 	private static Button Xbox_Right_Stick_Button;
 	
-	// Logitech controls
+	// Logitech(XBOX) controls
 	private static Button Log_A_Button;
 	private static Button Log_B_Button;
 	private static Button Log_X_Button;
@@ -60,8 +75,23 @@ public class OI {
 	private static Button Log_Left_Stick_Button;
 	private static Button Log_Right_Stick_Button;
 	
+	// Logitech(3D Joy) controls
+	private static Button Log_3d_Button_One;
+	private static Button Log_3d_Button_Two;
+	private static Button Log_3d_Button_Three;
+	private static Button Log_3d_Button_Four;
+	private static Button Log_3d_Button_Five;
+	private static Button Log_3d_Button_Six;
+	private static Button Log_3d_Button_Seven;
+	private static Button Log_3d_Button_Eight;
+	private static Button Log_3d_Button_Nine;
+	private static Button Log_3d_Button_Ten;
+	private static Button Log_3d_Button_Eleven;
+	private static Button Log_3d_Button_Twelve;
+	
 	public static Joystick Xbox_Controller;
 	public static Joystick Log_Controller;
+	public static Joystick Log_3d_Controller;
 	
 	private Command CollectorIn;
 	private Command CollectorOut;
@@ -78,11 +108,22 @@ public class OI {
 	
 	public OI (){
 		
+		
+		//DO STUFF HERE NOW!!!!!
+		if(!SmartDashboard.getBoolean("Joy", false)){
+			
 		//Instantiating all the Joysticks.
 		Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
 		
 		//Manipulator_Controller = new Joystick(RobotMap.MANIPULATORPORT);
 		Log_Controller = new Joystick(RobotMap.LOGPORT);
+		
+		}else{
+			
+		//3D Logitec Controller
+		Log_3d_Controller = new Joystick(RobotMap.LOG3DPORT);
+				
+		}
 		
 		//Instantiating all the buttons on each respectable Joystick.
 		//XBOX (Main Controller)

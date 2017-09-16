@@ -23,8 +23,8 @@ public class DriveSubsystem extends Subsystem {
 	private CANTalon FLDrive;
 
 	private CANTalon FRTurn;
-	private CANTalon RRTurn;
-	private CANTalon RLTurn;
+	private CANTalon BRTurn;
+	private CANTalon BLTurn;
 	private CANTalon FLTurn;
 
 	private AHRS NavX;
@@ -44,9 +44,9 @@ public class DriveSubsystem extends Subsystem {
 		FRDrive = new CANTalon(RobotMap.RFDRIVEMOTOR);
 		FRTurn = new CANTalon(RobotMap.RFSTEERMOTOR);
 		RRDrive = new CANTalon(RobotMap.RRDRIVEMOTOR);
-		RRTurn = new CANTalon(RobotMap.RRSTEERMOTOR);
+		BRTurn = new CANTalon(RobotMap.RRSTEERMOTOR);
 		RLDrive = new CANTalon(RobotMap.LRDRIVEMOTOR);
-		RLTurn = new CANTalon(RobotMap.LRSTEERMOTOR);
+		BLTurn = new CANTalon(RobotMap.LRSTEERMOTOR);
 		FLDrive = new CANTalon(RobotMap.LFDRIVEMOTOR);
 		FLTurn = new CANTalon(RobotMap.LFSTEERMOTOR);
 
@@ -70,32 +70,32 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.setP(1.0);
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
-		// resetEncoder(FRTurn, 4045);
-		resetEncoder(FRTurn, 34);
+		// Burnie Value: 4040 Fenrir(pratice) value: 501
+		resetEncoder(FRTurn, 501);
 		FRTurn.enable();
 		FRTurn.setAllowableClosedLoopErr(10);
 
-		RRTurn.disable();
-		RRTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		RRTurn.changeControlMode(TalonControlMode.Position);
-		RRTurn.setP(1.0);
-		RRTurn.reverseSensor(true);
-		RRTurn.reverseOutput(true);
-		// resetEncoder(RRTurn, 1477);
-		resetEncoder(RRTurn, 3743);
-		RRTurn.enable();
-		RRTurn.setAllowableClosedLoopErr(10);
+		BRTurn.disable();
+		BRTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		BRTurn.changeControlMode(TalonControlMode.Position);
+		BRTurn.setP(1.0);
+		BRTurn.reverseSensor(true);
+		BRTurn.reverseOutput(true);
+		// Burnie Value: 1387 Fenrir(pratice) value: 113
+		resetEncoder(BRTurn, 113);
+		BRTurn.enable();
+		BRTurn.setAllowableClosedLoopErr(10);
 
-		RLTurn.disable();
-		RLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		RLTurn.changeControlMode(TalonControlMode.Position);
-		RLTurn.setP(1.0);
-		RLTurn.reverseOutput(true);
-		RLTurn.reverseSensor(true);
-		// resetEncoder(RLTurn, 332);
-		resetEncoder(RLTurn, 1707);
-		RLTurn.enable();
-		RLTurn.setAllowableClosedLoopErr(10);
+		BLTurn.disable();
+		BLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		BLTurn.changeControlMode(TalonControlMode.Position);
+		BLTurn.setP(1.0);
+		BLTurn.reverseOutput(true);
+		BLTurn.reverseSensor(true);
+		// Burnie Value: 149 Fenrir(pratice) value: 2195
+		resetEncoder(BLTurn, 2195);
+		BLTurn.enable();
+		BLTurn.setAllowableClosedLoopErr(10);
 
 		FLTurn.disable();
 		FLTurn.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -103,8 +103,8 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.setP(1.0);
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
-		// resetEncoder(FLTurn, 1153);
-		resetEncoder(FLTurn, 4016);
+		// Burnie Value: 1170 Fenrir(pratice) value: 396
+		resetEncoder(FLTurn, 396);
 		FLTurn.enable();
 		FLTurn.setAllowableClosedLoopErr(10);
 	}
@@ -187,8 +187,8 @@ public class DriveSubsystem extends Subsystem {
 		FLpow = Math.sqrt(Math.pow(FLX + tempX, 2) + Math.pow(FLY + tempY, 2)) * -1;
 
 		setAngle(FRang, FRTurn);
-		setAngle(BRang, RRTurn);
-		setAngle(BLang, RLTurn);
+		setAngle(BRang, BRTurn);
+		setAngle(BLang, BLTurn);
 		setAngle(FLang, FLTurn);
 
 		//SmartDashboard.putNumber("X: ", FRX + tempX);
@@ -258,8 +258,8 @@ public class DriveSubsystem extends Subsystem {
 	public void spinning(double speed) {
 		setAngle(0.625 + .375, FRTurn);// testing offset .1055
 		setAngle(0.375 + .375 , FLTurn);
-		setAngle(0.875 + .375, RRTurn);
-		setAngle(0.125 + .375, RLTurn);
+		setAngle(0.875 + .375, BRTurn);
+		setAngle(0.125 + .375, BLTurn);
 		// ^^^ NEEDS TO BE CHANGED FOR COMPETITION
 		speed = speed * -1;
 		// for rotation
@@ -279,10 +279,10 @@ public class DriveSubsystem extends Subsystem {
 			Talon = FRTurn;
 		}
 		if (number == 2) {
-			Talon = RRTurn;
+			Talon = BRTurn;
 		}
 		if (number == 3) {
-			Talon = RLTurn;
+			Talon = BLTurn;
 		}
 		if (number == 4) {
 			Talon = FLTurn;
@@ -336,19 +336,19 @@ public class DriveSubsystem extends Subsystem {
 	public void stopTurn() {
 		if (FRTurn.getControlMode() == CANTalon.TalonControlMode.Position
 				&& FRTurn.getControlMode() == FLTurn.getControlMode()
-				&& FRTurn.getControlMode() == RRTurn.getControlMode()
-				&& FRTurn.getControlMode() == RLTurn.getControlMode()) {
+				&& FRTurn.getControlMode() == BRTurn.getControlMode()
+				&& FRTurn.getControlMode() == BLTurn.getControlMode()) {
 			// position mode
 			FRTurn.set(FRTurn.getPosition());
 			FLTurn.set(FLTurn.getPosition());
-			RRTurn.set(FRTurn.getPosition());
-			RLTurn.set(RLTurn.getPosition());
+			BRTurn.set(FRTurn.getPosition());
+			BLTurn.set(BLTurn.getPosition());
 		} else {
 			// not position mode
 			FRTurn.set(0.0);
-			RRTurn.set(0.0);
+			BRTurn.set(0.0);
 			FLTurn.set(0.0);
-			RLTurn.set(0.0);
+			BLTurn.set(0.0);
 		}
 	}
 
@@ -380,8 +380,8 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("Gyro:", NavX.getAngle());
 
 		SmartDashboard.putNumber("FRencPos:", FRTurn.getPosition());
-		SmartDashboard.putNumber("BRencPos:", RRTurn.getPosition());
-		SmartDashboard.putNumber("BLencPos:", RLTurn.getPosition());
+		SmartDashboard.putNumber("BRencPos:", BRTurn.getPosition());
+		SmartDashboard.putNumber("BLencPos:", BLTurn.getPosition());
 		SmartDashboard.putNumber("FLencPos:", FLTurn.getPosition());
 	}
 	
