@@ -26,14 +26,6 @@ public class ClimbSubsystem extends Subsystem {
 
 	}
 	
-	public void changeDirection(){
-		if(direction){
-			direction = false;
-		}else{
-			direction = true;
-		}
-	}
-	
 	public void Stop(){
 		climbMotor.set(0.0);
 	}
@@ -41,11 +33,8 @@ public class ClimbSubsystem extends Subsystem {
 	
 	
 	public void Climb(double speed){
-		if(direction ){
-			climbMotor.set(speed * -1);
-		}else{
-			climbMotor.set(speed);
-		}
+		climbMotor.set(speed);
+		
 	}
 	
 	public double getCurrent(){
