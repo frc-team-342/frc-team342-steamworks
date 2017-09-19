@@ -6,6 +6,6 @@ public class RotateAndLockGroup extends CommandGroup {
 	
 	public RotateAndLockGroup(double degree){
 		addSequential(new RotateToDegree(degree));
-		addSequential(new LockHeading());
+		//addSequential(new LockHeading());
 	}
 }

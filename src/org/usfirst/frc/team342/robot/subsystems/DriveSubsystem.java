@@ -71,7 +71,7 @@ public class DriveSubsystem extends Subsystem {
 		FRTurn.reverseSensor(true);
 		FRTurn.reverseOutput(true);
 		// Burnie Value: 4040 Fenrir(pratice) value: 501
-		resetEncoder(FRTurn, 501);
+		resetEncoder(FRTurn, 4040);
 		FRTurn.enable();
 		FRTurn.setAllowableClosedLoopErr(10);
 
@@ -82,7 +82,7 @@ public class DriveSubsystem extends Subsystem {
 		BRTurn.reverseSensor(true);
 		BRTurn.reverseOutput(true);
 		// Burnie Value: 1387 Fenrir(pratice) value: 113
-		resetEncoder(BRTurn, 113);
+		resetEncoder(BRTurn, 1387);
 		BRTurn.enable();
 		BRTurn.setAllowableClosedLoopErr(10);
 
@@ -93,7 +93,7 @@ public class DriveSubsystem extends Subsystem {
 		BLTurn.reverseOutput(true);
 		BLTurn.reverseSensor(true);
 		// Burnie Value: 149 Fenrir(pratice) value: 2195
-		resetEncoder(BLTurn, 2195);
+		resetEncoder(BLTurn, 149);
 		BLTurn.enable();
 		BLTurn.setAllowableClosedLoopErr(10);
 
@@ -104,7 +104,7 @@ public class DriveSubsystem extends Subsystem {
 		FLTurn.reverseSensor(true);
 		FLTurn.reverseOutput(true);
 		// Burnie Value: 1170 Fenrir(pratice) value: 396
-		resetEncoder(FLTurn, 396);
+		resetEncoder(FLTurn, 1170);
 		FLTurn.enable();
 		FLTurn.setAllowableClosedLoopErr(10);
 	}

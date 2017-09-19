@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
+
 	private static final OI INSTANCE = new OI();
 	
 	private static final int A_BUTTON = 1;
@@ -115,20 +115,18 @@ public class OI {
 	private Command ClimbUpWithButton;
 	private Command ClimbDownWithButton;
 	
-	private SendableChooser<Integer> control = new SendableChooser<>();
 	public boolean Joystick;
 	
 	public OI(){
 		
-		control.addDefault("Unchosen", 0);
-		control.addObject("Joystick", 1);
-		control.addObject("Xbox", 2);
-		while(control.getSelected().equals(0)) {
-			SmartDashboard.putString("SELECT A VALUE", "SELECT A VALUE!");
-		}
-		SmartDashboard.putString("SELECT A VALUE", "VALUE SELECTED!");
+			//3D Logitech Controller
+			//Log_3d_Controller = new Joystick(RobotMap.LOG3DPORT);
+			
+			//Setting the public variable joystick to false to tell other classes that we are using a joystick and custom controller.
+			//Joystick = true;
 		
-		if(control.getSelected().equals(2)){
+		
+		
 			//Instantiating all the Joysticks.
 			Xbox_Controller = new Joystick(RobotMap.XBOXPORT);
 		
@@ -138,19 +136,10 @@ public class OI {
 			//Setting the public variable joystick to true to tell other classes that we are using our xbox and logitech controllers.  
 			Joystick = false;
 		
-		}else{
-			//3D Logitech Controller
-			Log_3d_Controller = new Joystick(RobotMap.LOG3DPORT);
-			
-			//Setting the public variable joystick to false to tell other classes that we are using a joystick and custom controller.
-			Joystick = true;
-		
-		}
-		
 		//Instantiating all the buttons on each respectable Joystick.
 		
 		//XBOX (Main Controller)
-		Xbox_A_Button = new JoystickButton(Xbox_Controller, A_BUTTON);
+	    Xbox_A_Button = new JoystickButton(Xbox_Controller, A_BUTTON);
 		Xbox_B_Button = new JoystickButton(Xbox_Controller, B_BUTTON);
 		Xbox_X_Button = new JoystickButton(Xbox_Controller, X_BUTTON);
 		Xbox_Y_Button = new JoystickButton(Xbox_Controller, Y_BUTTON);
@@ -172,13 +161,12 @@ public class OI {
 		Log_Back = new JoystickButton(Log_Controller, LOG_BACK);
 		Log_Left_Stick_Button = new JoystickButton(Log_Controller, LOG_LS_BUTTON);
 		Log_Right_Stick_Button = new JoystickButton(Log_Controller, LOG_RS_BUTTON);
-		
+	
 		//Logitech 3d Joystick
-		Log_3d_Button_One = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_ONE);
+		/*Log_3d_Button_One = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_ONE);
 		Log_3d_Button_Two = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_TWO);
 		Log_3d_Button_Three = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_THREE);
 		Log_3d_Button_Four = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_FOUR);
-		Log_3d_Button_Five = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_FIVE);
 		Log_3d_Button_Six = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_SIX);
 		Log_3d_Button_Seven = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_SEVEN);
 		Log_3d_Button_Eight = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_EIGHT);
@@ -186,7 +174,7 @@ public class OI {
 		Log_3d_Button_Ten = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_TEN);
 		Log_3d_Button_Eleven = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_ELEVEN);
 		Log_3d_Button_Twelve = new JoystickButton(Log_3d_Controller, LOG_3D_BUTTON_TWELVE);
-		
+		*/
 		//Instantiating all the Commands used with buttons.
 		CollectorIn = new CollectorIn();
 		CollectorOut = new CollectorOut();
@@ -216,14 +204,14 @@ public class OI {
 		Log_Back.whileHeld(CollectorOut);
 		
 		//Logitech 3d Joystick
-		Log_3d_Button_One.whileHeld(SpinUpShooterJoy);
+		/*Log_3d_Button_One.whileHeld(SpinUpShooterJoy);
 		Log_3d_Button_Two.whileHeld(GearDoorDown);
 		Log_3d_Button_Three.whileHeld(GearDoorUp);
 		Log_3d_Button_Four.whileHeld(CollectorIn);
 		Log_3d_Button_Ten.whileHeld(ClimbUpWithButton);
 		Log_3d_Button_Eleven.whileHeld(Conveyer);
 		Log_3d_Button_Twelve.whileHeld(ClimbDownWithButton);
-		
+		*/
 		
 	}
 	
