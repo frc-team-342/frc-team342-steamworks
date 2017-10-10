@@ -1,3 +1,5 @@
+
+
 package org.usfirst.frc.team342.robot;
 
 import org.usfirst.frc.team342.robot.commands.ClimbWithButton;
@@ -191,9 +193,11 @@ public class OI {
 		//Setting each button to a command for each controller
 		
 		//XBOX
-		Xbox_B_Button.whenPressed(StopShooter);
+		Xbox_A_Button.whenPressed(GearDoorDown);
+		Xbox_B_Button.whenPressed(GearDoorUp);
 		Xbox_Right_Bumper.whileHeld(Conveyer);
 		Xbox_Start.whenPressed(ResetFelO);
+		
 		//Xbox_Back.whenPressed(ToggleCamera);
 		
 		//Logitech controller
