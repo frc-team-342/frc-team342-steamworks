@@ -19,7 +19,7 @@ public class GearDoorDown extends Command {
 	@Override
 	protected void initialize() {
 		EndTime = System.currentTimeMillis() + (delay * 1000);
-		isclosed = ! gearSystem.getHallEffect();
+		isclosed = !gearSystem.getHallEffect();
 		SmartDashboard.putString("GC", "gear goes down");
 	}
 
@@ -31,7 +31,7 @@ public class GearDoorDown extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() > EndTime) || ! isclosed;
+		return (System.currentTimeMillis() > EndTime) || !isclosed;
 	}
 	
 	@Override

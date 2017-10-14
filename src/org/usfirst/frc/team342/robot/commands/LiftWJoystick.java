@@ -21,12 +21,13 @@ public class LiftWJoystick extends Command {
 	private final double HIGH_DEADZONE = 0.90;
 	private double magnitude;
 	private Joystick joystick;
+	private Joystick xbox;
 	
 	public LiftWJoystick(){
 		climb = ClimbSubsystem.getInstance();
 		speed = 1.0;
 		joystick = OI.Log_Controller;
-		
+		xbox = OI.Xbox_Controller;
 		
 	}
 	
@@ -51,6 +52,12 @@ public class LiftWJoystick extends Command {
 		
 		SmartDashboard.putNumber("SPEED:", speed);
 		climb.Climb(speed * direction);
+		
+		if(xbox.getPOV(0) != -1){
+			climb.Climb(1.0);
+		}else if(xbox.getPOV(4) != -1){
+			climb.Climb(-1.0);
+		}
 	
 	}
 	

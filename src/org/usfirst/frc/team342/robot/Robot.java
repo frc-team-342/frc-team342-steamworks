@@ -41,13 +41,12 @@ public class Robot extends IterativeRobot {
 	private static ShooterSubsystem shooter;
 	
 	private static Command driveWithJoystick;
-	private static Command LiftJoystick;
-	private static Command ShooterFire;
+	private static Command climbWithJoystick;
+	private static Command shooterRun;
 	private static Command Drivefoward;
 	private static Command useless;
 	private static Command autoShoot;
 	private static Command autoRotate;
-	
 	
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -57,7 +56,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public Robot(){
 		cameraSystem = CameraSystem.getInstance();
-		
 		climbSubsystem = ClimbSubsystem.getInstance();
 		drive = DriveSubsystem.getInstance();
 		gearSubsystem = GearSubsystem.getInstance();
@@ -66,8 +64,8 @@ public class Robot extends IterativeRobot {
 		oi = OI.getInstance();
 		//commands
 		driveWithJoystick = new DriveWithJoystick();
-		LiftJoystick = new LiftWJoystick();
-		ShooterFire = new ShooterRun();
+		climbWithJoystick = new LiftWJoystick();
+		shooterRun = new ShooterRun();
 	}
 	
 	@Override
@@ -128,8 +126,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		//DebugCommand = new DebugLights();
-		//DebugCommand.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -137,8 +133,12 @@ public class Robot extends IterativeRobot {
 		//if (autonomousCommand != null)
 		//	autonomousCommand.cancel();
 		driveWithJoystick.start();
-		LiftJoystick.start();
-		ShooterFire.start();
+		
+		if(!oi.Joystick) {
+			climbWithJoystick.start();
+			shooterRun.start();
+		}
+		
 	}
 
 	/**
@@ -147,6 +147,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBoolean("Hall-Effex", gearSubsystem.getHallEffect());
 		//driveWithJoystick.start();
 	}
 
