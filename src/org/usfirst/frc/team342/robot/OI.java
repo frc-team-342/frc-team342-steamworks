@@ -2,7 +2,6 @@
 
 package org.usfirst.frc.team342.robot;
 
-import org.usfirst.frc.team342.robot.commands.ClimbWithButton;
 import org.usfirst.frc.team342.robot.commands.CollectorIn;
 import org.usfirst.frc.team342.robot.commands.CollectorOut;
 import org.usfirst.frc.team342.robot.commands.ConveyerRun;
@@ -17,8 +16,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -187,8 +184,8 @@ public class OI {
 		Conveyer = new ConveyerRun();
 		ToggleCamera = new ToggleCamera();
 		ResetFelO = new FelOreset();
-		ClimbUpWithButton = new ClimbWithButton(1.0);
-		ClimbDownWithButton = new ClimbWithButton(-1.0);
+		//ClimbUpWithButton = new ClimbWithButton(1.0);
+		//ClimbDownWithButton = new ClimbWithButton(-1.0);
 		
 		//Setting each button to a command for each controller
 		
