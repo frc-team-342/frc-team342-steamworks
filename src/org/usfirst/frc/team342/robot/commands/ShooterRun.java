@@ -31,10 +31,8 @@ public class ShooterRun extends Command{
 	protected void execute() {
 		if(!control){
 			Shooter.SpinUpShooters(-OI.Xbox_Controller.getRawAxis(3));
-			SmartDashboard.putString("ShooterSpeed", OI.Xbox_Controller.getRawAxis(3) + "");
 		}else{
 			Shooter.SpinUpShooters(speed);
-			SmartDashboard.putString("ShooterSpeed", speed + "");
 		}
 	}
 	

@@ -4,41 +4,39 @@ import org.usfirst.frc.team342.robot.subsystems.ClimbSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LiftStart extends Command {
-	
-	private ClimbSubsystem climb;
+public class ClimbWithButton extends Command {
+
+	private ClimbSubsystem climbSubsystem;
 	
 	private double speed;
 	
-	public LiftStart(){
-		climb = ClimbSubsystem.getInstance();
-		speed = 1.0;
+	public ClimbWithButton(double inptspeed){
+		climbSubsystem = ClimbSubsystem.getInstance();
+		speed = inptspeed;
 	}
-
+	
 	@Override
 	protected void initialize() {
-		climb.changeDirection();
 	}
 
 	@Override
 	protected void execute() {
-		climb.Climb(speed);
+		climbSubsystem.Climb(speed);
 	}
-
+	
 	@Override
 	protected boolean isFinished() {
 		return false;
-		
 	}
-
+	
 	@Override
 	protected void end() {
-		climb.Stop();
+		climbSubsystem.Stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		climb.Stop();
+		climbSubsystem.Stop();
 	}
 
 }

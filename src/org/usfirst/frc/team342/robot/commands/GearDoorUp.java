@@ -26,7 +26,7 @@ public class GearDoorUp extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		return ! gearSystem.getHallEffect();
+		return !gearSystem.getHallEffect();
 	}
 	
 	@Override
